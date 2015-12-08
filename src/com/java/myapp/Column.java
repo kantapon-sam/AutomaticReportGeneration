@@ -5,13 +5,11 @@ import static java.lang.Math.pow;
 public class Column {
 
     public static void column_2(String[] arr, int lineNumber, int Checkline, float[] column, float[][] arrData) {
-
         if (lineNumber >= 11 && Checkline == 346) {
             calculateCPU(arr, column, arrData, lineNumber, Checkline);
         } else if (lineNumber >= 13 && Checkline == 348) {
             calculateCPU(arr, column, arrData, lineNumber, Checkline);
         }
-
     }
 
     public static void column_3(String[] arr, int lineNumber, float[] column, float[][] arrData) {

@@ -8,18 +8,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Float.max;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class AutomaticReportGeneration {
-    
-    public static void main(String[] args) throws IOException {
+
+    public static void main(String[] args) {
         Dialog.setLAF();
         Desktop d = Desktop.getDesktop();
         PathFolder Folder = new PathFolder();
@@ -29,45 +26,38 @@ public class AutomaticReportGeneration {
         try {
             switch (Dialog.getChoice()) {
                 case 0:
+                    long StartResult = System.currentTimeMillis();
+                    Wait wait = new Wait();
                     int TotalFile = 0;
                     int index = -1;
                     float max[] = new float[7];
                     float most = 0;
-                    if (Folder.getFoldeSuccess().exists()) {
-                        d.open(Folder.getFolderReport());
+                    if (!Folder.getFoldeSuccess().exists()) {
+                        Folder.getFoldeSuccess().mkdirs();
+                        Dialog.NoFolder();
+                        System.exit(0);
                     }
-                    Folder.getFoldeSuccess().mkdirs();
-                    Folder.getFolderURL().mkdirs();
-                    if (Csv.getFileWriteMax().exists()
-                            || Csv.getFileMOST().exists()
-                            || Csv.getFileWriteMax_space().exists()
-                            || Csv.getFileMOST_space().exists()) {
-                        Csv.getFileWriteMax().delete();
-                        Csv.getFileMOST().delete();
-                        Csv.getFileWriteMax_space().delete();
-                        Csv.getFileMOST_space().delete();
-                    } else {
-                        Csv.getFileWriteMax().createNewFile();
-                        Csv.getFileMOST().createNewFile();
-                        Csv.getFileWriteMax_space().createNewFile();
-                        Csv.getFileMOST_space().createNewFile();
+                    for (File fileSuccess : Folder.getFileSuccess()) {
+                        fileSuccess.delete();
                     }
-                    
-                    for (File fileURL : Folder.getFileURL()) {
-                        fileURL.delete();
-                    }
+                    Csv.getFileWriteMax().createNewFile();
+                    Csv.getFileMOST().createNewFile();
+                    Csv.getFileWriteMax_space().createNewFile();
+                    Csv.getFileMOST_space().createNewFile();
+
                     long[] TimeData = new long[Folder.getFileReport().length];
-                    
+
                     for (int i = 0; i < Folder.getFileReport().length; i++) {
                         TimeData[i] = Folder.getFileReport()[i].lastModified();
                     }
                     Arrays.sort(TimeData);
                     while (TotalFile < Folder.getFileReport().length) {
+
                         String[] arr = null;
                         int lineNumber = 0;
                         int Checkline = 0;
                         try {
-                            
+
                             float arrData[][] = new float[7][336];
                             for (int i = 0; i < Folder.getFileReport().length; i++) {
                                 if (TimeData[TotalFile] == Folder.getFileReport()[i].lastModified()) {
@@ -76,12 +66,13 @@ public class AutomaticReportGeneration {
                                     break;
                                 }
                             }
-                            
+
                             Scanner scan = new Scanner(Folder.getFileReport()[index]);
                             float[] column = new float[7];
                             BufferedReader br = new BufferedReader(new FileReader(Folder.getFileReport()[index]));
                             BufferedReader br_Checkline = new BufferedReader(new FileReader(Folder.getFileReport()[index]));
                             String line;
+
                             try {
                                 while ((line = br_Checkline.readLine()) != null) {
                                     Checkline++;
@@ -107,7 +98,6 @@ public class AutomaticReportGeneration {
                                             default:
                                                 break;
                                         }
-                                        
                                     }
                                 } else {
                                     while ((line = br.readLine()) != null) {
@@ -172,19 +162,38 @@ public class AutomaticReportGeneration {
                                         break;
                                 }
                             }
-                        } catch (FileNotFoundException e) {
+                        } catch (FileNotFoundException ex) {
                             if (TotalFile != 0) {
+                                if (Folder.getFoldeSuccess().exists()) {
+                                    d.open(Folder.getFoldeSuccess());
+                                }
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    Thread.currentThread().interrupt();
+                                }
+                                wait.dispose();
+                                long StopResult = System.currentTimeMillis();
+                                Dialog.setSecResult((StopResult - StartResult) / 1000);
                                 Dialog.NoErrorSuccess();
+                            } else {
+                                wait.dispose();
+                                Dialog.NoFile();
                             }
+                            System.exit(0);
                             break;
                         }
                         if (Checkline == 0) {
                             FileWriter NULL;
+                            FileWriter Most;
                             FileWriter NULL_space;
+                            FileWriter Most_space;
                             NULL = new FileWriter(Csv.getFileWriteMax(), true);
+                            Most = new FileWriter(Csv.getFileMOST(), true);
                             NULL_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                            Writer.Nolinebreaks(NULL, Folder, index);
-                            Writer.Linespacing(NULL_space, Folder, index);
+                            Most_space = new FileWriter(Csv.getFileMOST_space(), true);
+                            Writer.Nolinebreaks(NULL, Most);
+                            Writer.Linespacing(NULL_space, Most_space);
                         } else {
                             switch (arr.length) {
                                 case 2:
@@ -227,74 +236,118 @@ public class AutomaticReportGeneration {
                                     break;
                             }
                         }
+
                         TotalFile++;
+
                     }
                     System.exit(0);
                     break;
                 case 1:
-                    long start = System.currentTimeMillis();
-                    long stop = 0;
-                    int Error = 0;
+
+                    SelectURL selectURL = new SelectURL();
+                    selectURL.getChooser().getSelectedFile();
+                    URLConnection Connect = new URLConnection();
+                    long startDownload = System.currentTimeMillis();
                     try {
-                        Folder.getFolderURL().mkdirs();
-                        Folder.getFoldeSuccess().mkdirs();
-                        if (Folder.getFileURL().length == 0) {
-                            d.open(Folder.getFolderURL());
+                        if (Folder.getFoldeSuccess().isDirectory()) {
+                            for (File fileSuccess : Folder.getFileSuccess()) {
+                                fileSuccess.delete();
+                            }
                         }
                         for (File fileReport : Folder.getFileReport()) {
-                            if (!fileReport.getAbsolutePath().equals(Folder.getPathFolderURL())) {
+                            if (!fileReport.getAbsolutePath().equals(Folder.getPathFolderURL())
+                                    && !fileReport.getAbsolutePath().equals(Folder.getPathFolderSuccess())) {
                                 fileReport.delete();
                             }
                         }
-                        for (File fileURL : Folder.getFileURL()) {
-                            Scanner scan = new Scanner(fileURL);
-                            BufferedReader br = new BufferedReader(new FileReader(fileURL));
+                        if (selectURL.getChooser().getSelectedFile().getName().contains(".txt")
+                                || selectURL.getChooser().getSelectedFile().getName().contains(".csv")) {
+                            Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
+                            new StopProgram();
+                            Scanner scan = new Scanner(selectURL.getURL());
+                            BufferedReader br = new BufferedReader(new FileReader(selectURL.getURL()));
+                            BufferedReader br_Checkline = new BufferedReader(new FileReader(selectURL.getURL()));
                             String line;
+                            int indexline = 0;
+                            int Checkline = 0;
                             int lineNumber = 0;
+                            while ((line = br_Checkline.readLine()) != null) {
+                                Checkline++;
+                            }
+                            br_Checkline.close();
+                            String[] spac = new String[Checkline];
                             while ((line = br.readLine()) != null) {
-                                
+
                                 String[] arr = line.split(",");
+                                spac[indexline] = arr[1].split("cacti/")[0];
+                                if (arr[1].charAt(0) == '/') {
+                                    arr[1] = linespacing(spac[1]);
+                                    Thread.sleep(300);
+                                }
                                 if (arr.length == 1 || arr == line.split(",")) {
                                     continue;
                                 } else {
-                                    try {
-                                        lineNumber++;
-                                        Dialog.setLineNumber(lineNumber);
-                                        URL url = new URL(arr[1]);
-                                        HttpURLConnection http = (HttpURLConnection) url.openConnection();
-                                        int statusCode = http.getResponseCode();
-                                        if (statusCode == 200) {
-                                            System.out.println(line.split(",")[0]);
-                                        }
-                                    } catch (UnknownHostException ex) {
-                                        Dialog.LineURLError();
-                                        Error++;
-                                        break;
-                                    }
+                                    lineNumber++;
+                                    Connect.CheckConnection(arr[1], line, lineNumber);
                                 }
+                                indexline++;
                                 d.browse(new URI(arr[1]));
                                 Thread.sleep(1500);
                             }
-                            stop = System.currentTimeMillis();
-                            System.out.println("time = " + ((stop - start) / 1000));
-                            Dialog.setSec((stop - start) / 1000);
-                            if (Error == 0) {
-                                Dialog.NoErrorDownload();
-                            }
                             br.close();
+                        } else {
+                            Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
+                            new StopProgram();
+                            for (File fileURL : selectURL.getURLinFolder()) {
+                                Scanner scan = new Scanner(fileURL);
+                                BufferedReader br = new BufferedReader(new FileReader(fileURL));
+                                BufferedReader br_Checkline = new BufferedReader(new FileReader(fileURL));
+                                String line;
+                                int indexline = 0;
+                                int Checkline = 0;
+                                int lineNumber = 0;
+                                while ((line = br_Checkline.readLine()) != null) {
+                                    Checkline++;
+                                }
+                                br_Checkline.close();
+                                String[] spac = new String[Checkline];
+                                while ((line = br.readLine()) != null) {
+                                    String[] arr = line.split(",");
+                                    spac[indexline] = arr[1].split("cacti/")[0];
+                                    if (arr[1].charAt(0) == '/') {
+                                        arr[1] = linespacing(spac[1]);
+                                    }
+                                    if (arr.length == 1 || arr == line.split(",")) {
+                                        continue;
+                                    } else {
+                                        lineNumber++;
+                                        Connect.CheckConnection(arr[1], line, lineNumber);
+                                    }
+                                    indexline++;
+                                    d.browse(new URI(arr[1]));
+                                    Thread.sleep(1500);
+                                }
+                                br.close();
+                            }
                         }
-                    } catch (NullPointerException ex) {
-                        Dialog.NoFolder();
+                    } catch (FileNotFoundException | ArrayIndexOutOfBoundsException ex) {
+
+                        Dialog.NoFile();
                         System.exit(0);
                     } catch (MalformedURLException | RuntimeException | URISyntaxException ex) {
+                        ex.printStackTrace();
                         Dialog.URLError();
                     } catch (InterruptedException ex) {
                         Thread.currentThread().interrupt();
                     }
-                    
+                    long stopDownload = System.currentTimeMillis();
+                    System.out.println("time = " + ((stopDownload - startDownload) / 1000));
+                    Dialog.setSecDownload((stopDownload - startDownload) / 1000);
+                    if (Connect.getError() == 0) {
+                        Dialog.NoErrorDownload();
+                    }
                     System.exit(0);
                     break;
-                
                 case 2:
                     System.out.println("Exit");
                     System.exit(0);
@@ -303,8 +356,16 @@ public class AutomaticReportGeneration {
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (NullPointerException ex) {
-            Dialog.NoFolder();
             System.exit(0);
+        } catch (IllegalArgumentException ex) {
+            System.out.println("aa");
         }
     }
+
+    private static String linespacing(String str) {
+        String linespacing;
+        linespacing = str + "cacti/graph_xport.php?local_graph_id=0&rra_id=2&view_type=";
+        return linespacing;
+    }
+
 }

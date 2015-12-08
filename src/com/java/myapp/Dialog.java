@@ -12,12 +12,15 @@ import sun.audio.*;
 public class Dialog extends PathFolder {
 
     private final Object[] options = {"Result", "Download", "Exit"};
+    private final Object[] login = {"OK", "Cancel"};
+    private int Numberlogin = 0;
     private int lineNumber = 0;
     private int TotalFile = 0;
     private int choice = 0;
     private PathFolder PathFolderMusic;
     private InputStream InputStream;
-    private long sec = 0;
+    private long secDownload = 0;
+    private long secResult = 0;
     protected AudioStream Music;
 
     public static void setLAF() {
@@ -35,6 +38,7 @@ public class Dialog extends PathFolder {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Notify Messaging.wav"));
             Music = new AudioStream(InputStream);
             AudioPlayer.player.start(Music);
+
             choice = JOptionPane.showOptionDialog(null,
                     "Automatic Report Generation",
                     "Automatic Report Generation", JOptionPane.YES_NO_CANCEL_OPTION,
@@ -47,6 +51,18 @@ public class Dialog extends PathFolder {
             System.exit(0);
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+
+    }
+
+    public void login() {
+        Numberlogin = JOptionPane.showOptionDialog(null,
+                "Login",
+                "Question", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, login, login[1]);
+        System.out.print(Numberlogin);
+        if (Numberlogin == 1) {
+            System.exit(0);
         }
 
     }
@@ -69,6 +85,14 @@ public class Dialog extends PathFolder {
         System.out.println("URL ERROR!!! Line = " + lineNumber);
     }
 
+    public void NoLAN() {
+        Error();
+        JOptionPane.showMessageDialog(null,
+                "Please connect LAN",
+                "No Connection!",
+                JOptionPane.ERROR_MESSAGE);
+    }
+
     public void FileError() {
         Error();
         JOptionPane.showMessageDialog(null,
@@ -77,16 +101,31 @@ public class Dialog extends PathFolder {
                 JOptionPane.ERROR_MESSAGE);
     }
 
+    public void NoFile() {
+        try {
+            InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Background.wav"));
+            Music = new AudioStream(InputStream);
+            AudioPlayer.player.start(Music);
+            JOptionPane.showMessageDialog(null,
+                    "Invalid file",
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void NoFolder() {
         try {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Background.wav"));
             Music = new AudioStream(InputStream);
             AudioPlayer.player.start(Music);
             JOptionPane.showMessageDialog(null,
-                    "Creating file storage... Please click again",
+                    "No folder, please click again.",
                     "Warning",
                     JOptionPane.WARNING_MESSAGE);
-            System.exit(0);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
@@ -108,12 +147,13 @@ public class Dialog extends PathFolder {
     }
 
     public void NoErrorSuccess() {
+        long minute = 0;
         try {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Background.wav"));
             Music = new AudioStream(InputStream);
             AudioPlayer.player.start(Music);
             JOptionPane.showMessageDialog(null,
-                    "Success Result",
+                    "Success Result Time = " + (secResult / 60) + " : " + (secResult - (60 * (secResult / 60))) + " Minute",
                     "Message",
                     JOptionPane.PLAIN_MESSAGE);
         } catch (FileNotFoundException ex) {
@@ -129,7 +169,7 @@ public class Dialog extends PathFolder {
             Music = new AudioStream(InputStream);
             AudioPlayer.player.start(Music);
             JOptionPane.showMessageDialog(null,
-                    "Success Download.. Time = " + sec + " Sec\nClick And select Results please.",
+                    "Success Download.. Time = " + (secDownload / 60) + " : " + (secDownload - (60 * (secDownload / 60))) + " Minute\nClick And select Results please.",
                     "Message",
                     JOptionPane.PLAIN_MESSAGE);
         } catch (FileNotFoundException ex) {
@@ -163,8 +203,12 @@ public class Dialog extends PathFolder {
         this.choice = choice;
     }
 
-    public void setSec(long sec) {
-        this.sec = sec;
+    public void setSecDownload(long secDownload) {
+        this.secDownload = secDownload;
+    }
+
+    public void setSecResult(long secResult) {
+        this.secResult = secResult;
     }
 
 }

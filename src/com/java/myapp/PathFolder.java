@@ -13,6 +13,7 @@ public class PathFolder {
     private File[] FileReport;
     private String PathFolderSuccess;
     private File FoldeSuccess;
+    private File[] FileSuccess;
     private String PathFolderMusic;
     private File FolderMusic;
 
@@ -26,6 +27,7 @@ public class PathFolder {
             FileReport = FolderReport.listFiles();
             PathFolderSuccess = new File(".").getCanonicalPath() + "\\Report\\Success";
             FoldeSuccess = new File(PathFolderSuccess);
+            FileSuccess = FoldeSuccess.listFiles();
             PathFolderMusic = new File(".").getCanonicalPath() + "\\Media";
             FolderMusic = new File(PathFolderMusic);
         } catch (IOException ex) {
@@ -72,6 +74,10 @@ public class PathFolder {
 
     public File getFolderMusic() {
         return FolderMusic;
+    }
+
+    public File[] getFileSuccess() {
+        return FileSuccess;
     }
 
 }

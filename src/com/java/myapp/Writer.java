@@ -10,8 +10,9 @@ public class Writer {
         try {
             Max.write("\"[IN]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
             Max.write("\"[OUT]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
-            Most.write("\"[MOST]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + most + "\n");
             Max.close();
+            Most.write("\"[MOST]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + most + "\n");
+
             Most.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -39,11 +40,12 @@ public class Writer {
         try {
             Max_space.write("\"[IN]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
             Max_space.write("\"[OUT]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
-            Most_space.write("\"[MOST]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + most + "\n\n");
             Max_space.close();
+            Most_space.write("\"[MOST]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + most + "\n\n");
             Most_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
+
             ex.printStackTrace();
         }
 
@@ -128,23 +130,28 @@ public class Writer {
         }
     }
 
-    public static void Nolinebreaks(FileWriter NULL, PathFolder Folder, int index) {
+    public static void Nolinebreaks(FileWriter NULL, FileWriter Most) {
         try {
-            NULL.write("\"[null]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\",NULL\n");
+            Most.write("\"[null]\",\n");
+            Most.close();
+            NULL.write("\"[null]\",\n");
             NULL.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
+            System.out.println("bb");
             ex.printStackTrace();
         }
     }
 
-    public static void Linespacing(FileWriter NULL_space, PathFolder Folder, int index) {
+    public static void Linespacing(FileWriter NULL_space, FileWriter Most_space) {
         try {
-            NULL_space.write("\"[null]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\",NULL\n\n");
+            Most_space.write("\"[null]\",\n\n");
+            Most_space.close();
+            NULL_space.write("\"[null]\",\n\n");
             NULL_space.close();
-
             System.out.println("Write success!");
         } catch (IOException ex) {
+            System.out.println("bb");
             ex.printStackTrace();
         }
     }
