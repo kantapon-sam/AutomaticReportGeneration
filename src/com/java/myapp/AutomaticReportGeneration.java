@@ -32,6 +32,7 @@ public class AutomaticReportGeneration {
                     int index = -1;
                     float max[] = new float[7];
                     float most = 0;
+
                     if (!Folder.getFoldeSuccess().exists()) {
                         Folder.getFoldeSuccess().mkdirs();
                         Dialog.NoFolder();
@@ -183,69 +184,70 @@ public class AutomaticReportGeneration {
                             System.exit(0);
                             break;
                         }
-                        if (Checkline == 0) {
-                            FileWriter NULL;
-                            FileWriter Most;
-                            FileWriter NULL_space;
-                            FileWriter Most_space;
-                            NULL = new FileWriter(Csv.getFileWriteMax(), true);
-                            Most = new FileWriter(Csv.getFileMOST(), true);
-                            NULL_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                            Most_space = new FileWriter(Csv.getFileMOST_space(), true);
-                            Writer.Nolinebreaks(NULL, Most);
-                            Writer.Linespacing(NULL_space, Most_space);
-                        } else {
-                            switch (arr.length) {
-                                case 2:
-                                    FileWriter CPU;
-                                    FileWriter CPU_space;
-                                    CPU = new FileWriter(Csv.getFileWriteMax(), true);
-                                    CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                    Writer.Nolinebreaks(CPU, Folder, index, max, Checkline);
-                                    Writer.Linespacing(CPU_space, Folder, index, max, Checkline);
-                                    break;
-                                case 3:
-                                    FileWriter IN_OUT;
-                                    FileWriter Most;
-                                    FileWriter IN_OUT_space;
-                                    FileWriter Most_space;
-                                    IN_OUT = new FileWriter(Csv.getFileWriteMax(), true);
-                                    Most = new FileWriter(Csv.getFileMOST(), true);
-                                    IN_OUT_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                    Most_space = new FileWriter(Csv.getFileMOST_space(), true);
-                                    Writer.Nolinebreaks(IN_OUT, Most, Folder, index, max, most);
-                                    Writer.Linespacing(IN_OUT_space, Most_space, Folder, index, max, most);
-                                    break;
-                                case 7:
-                                    FileWriter IPPool7;
-                                    FileWriter IPPool7_space;
-                                    IPPool7 = new FileWriter(Csv.getFileWriteMax(), true);
-                                    IPPool7_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                    Writer.Nolinebreaks7(IPPool7, Folder, index, max);
-                                    Writer.Linespacing7(IPPool7_space, Folder, index, max);
-                                    break;
-                                case 8:
-                                    FileWriter IPPool8;
-                                    FileWriter IPPool8_space;
-                                    IPPool8 = new FileWriter(Csv.getFileWriteMax(), true);
-                                    IPPool8_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                    Writer.Nolinebreaks8(IPPool8, Folder, index, max);
-                                    Writer.Linespacing8(IPPool8_space, Folder, index, max);
-                                    break;
-                                default:
-                                    break;
+                        try {
+                            if (Checkline == 0) {
+                                FileWriter NULL;
+                                FileWriter Most;
+                                FileWriter NULL_space;
+                                FileWriter Most_space;
+                                NULL = new FileWriter(Csv.getFileWriteMax(), true);
+                                Most = new FileWriter(Csv.getFileMOST(), true);
+                                NULL_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                Most_space = new FileWriter(Csv.getFileMOST_space(), true);
+                                Writer.Nolinebreaks(NULL, Most);
+                                Writer.Linespacing(NULL_space, Most_space);
+                            } else {
+                                switch (arr.length) {
+                                    case 2:
+                                        FileWriter CPU;
+                                        FileWriter CPU_space;
+                                        CPU = new FileWriter(Csv.getFileWriteMax(), true);
+                                        CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        Writer.Nolinebreaks(CPU, Folder, index, max, Checkline);
+                                        Writer.Linespacing(CPU_space, Folder, index, max, Checkline);
+                                        break;
+                                    case 3:
+                                        FileWriter IN_OUT;
+                                        FileWriter Most;
+                                        FileWriter IN_OUT_space;
+                                        FileWriter Most_space;
+                                        IN_OUT = new FileWriter(Csv.getFileWriteMax(), true);
+                                        Most = new FileWriter(Csv.getFileMOST(), true);
+                                        IN_OUT_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        Most_space = new FileWriter(Csv.getFileMOST_space(), true);
+                                        Writer.Nolinebreaks(IN_OUT, Most, Folder, index, max, most);
+                                        Writer.Linespacing(IN_OUT_space, Most_space, Folder, index, max, most);
+
+                                        break;
+                                    case 7:
+                                        FileWriter IPPool7;
+                                        FileWriter IPPool7_space;
+                                        IPPool7 = new FileWriter(Csv.getFileWriteMax(), true);
+                                        IPPool7_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        Writer.Nolinebreaks7(IPPool7, Folder, index, max);
+                                        Writer.Linespacing7(IPPool7_space, Folder, index, max);
+                                        break;
+                                    case 8:
+                                        FileWriter IPPool8;
+                                        FileWriter IPPool8_space;
+                                        IPPool8 = new FileWriter(Csv.getFileWriteMax(), true);
+                                        IPPool8_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        Writer.Nolinebreaks8(IPPool8, Folder, index, max);
+                                        Writer.Linespacing8(IPPool8_space, Folder, index, max);
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
+                        } catch (FileNotFoundException ex) {
+                            Dialog.fileOpen();
                         }
-
                         TotalFile++;
-
                     }
                     System.exit(0);
                     break;
                 case 1:
-
                     SelectURL selectURL = new SelectURL();
-                    selectURL.getChooser().getSelectedFile();
                     URLConnection Connect = new URLConnection();
                     long startDownload = System.currentTimeMillis();
                     try {
@@ -262,6 +264,12 @@ public class AutomaticReportGeneration {
                         }
                         if (selectURL.getChooser().getSelectedFile().getName().contains(".txt")
                                 || selectURL.getChooser().getSelectedFile().getName().contains(".csv")) {
+                            while (true) {
+                                Dialog.delay();
+                                if (Dialog.getDelay() >= 1500) {
+                                    break;
+                                }
+                            }
                             Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
                             new StopProgram();
                             Scanner scan = new Scanner(selectURL.getURL());
@@ -274,12 +282,13 @@ public class AutomaticReportGeneration {
                             while ((line = br_Checkline.readLine()) != null) {
                                 Checkline++;
                             }
+                            System.out.println(Checkline);
                             br_Checkline.close();
                             String[] spac = new String[Checkline];
                             while ((line = br.readLine()) != null) {
-
                                 String[] arr = line.split(",");
                                 spac[indexline] = arr[1].split("cacti/")[0];
+
                                 if (arr[1].charAt(0) == '/') {
                                     arr[1] = linespacing(spac[1]);
                                     Thread.sleep(300);
@@ -291,11 +300,18 @@ public class AutomaticReportGeneration {
                                     Connect.CheckConnection(arr[1], line, lineNumber);
                                 }
                                 indexline++;
+                                Dialog.setErrorline(indexline);
                                 d.browse(new URI(arr[1]));
-                                Thread.sleep(1500);
+                                Thread.sleep(Dialog.getDelay());
                             }
                             br.close();
                         } else {
+                            while (true) {
+                                Dialog.delay();
+                                if (Dialog.getDelay() >= 1500) {
+                                    break;
+                                }
+                            }
                             Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
                             new StopProgram();
                             for (File fileURL : selectURL.getURLinFolder()) {
@@ -324,14 +340,17 @@ public class AutomaticReportGeneration {
                                         Connect.CheckConnection(arr[1], line, lineNumber);
                                     }
                                     indexline++;
+                                    Dialog.setErrorline(indexline);
                                     d.browse(new URI(arr[1]));
-                                    Thread.sleep(1500);
+                                    Thread.sleep(Dialog.getDelay());
                                 }
                                 br.close();
                             }
                         }
-                    } catch (FileNotFoundException | ArrayIndexOutOfBoundsException ex) {
-
+                    } catch (ArrayIndexOutOfBoundsException ex) {
+                        Dialog.format();
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
                         Dialog.NoFile();
                         System.exit(0);
                     } catch (MalformedURLException | RuntimeException | URISyntaxException ex) {
@@ -358,7 +377,7 @@ public class AutomaticReportGeneration {
         } catch (NullPointerException ex) {
             System.exit(0);
         } catch (IllegalArgumentException ex) {
-            System.out.println("aa");
+            ex.printStackTrace();
         }
     }
 

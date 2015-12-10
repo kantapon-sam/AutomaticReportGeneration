@@ -21,6 +21,8 @@ public class Dialog extends PathFolder {
     private InputStream InputStream;
     private long secDownload = 0;
     private long secResult = 0;
+    private long delay = 0;
+    int Errorline = 0;
     protected AudioStream Music;
 
     public static void setLAF() {
@@ -133,6 +135,31 @@ public class Dialog extends PathFolder {
         }
     }
 
+    public void format() {
+        try {
+            InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Background.wav"));
+            Music = new AudioStream(InputStream);
+            AudioPlayer.player.start(Music);
+            JOptionPane.showMessageDialog(null,
+                    "Invalid format\n"
+                    + "line = " + (Errorline + 1),
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        System.exit(0);
+    }
+
+    public void fileOpen() {
+        Error();
+        JOptionPane.showMessageDialog(null,
+                "Please close the file",
+                "No Connection!",
+                JOptionPane.ERROR_MESSAGE);
+        System.exit(0);
+    }
+
     public void Error() {
         try {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Error.wav"));
@@ -179,6 +206,30 @@ public class Dialog extends PathFolder {
         }
     }
 
+    public void delay() {
+        try {
+            String s = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Please put number delay download\n"
+                    + "\"Input number >=1.5\"",
+                    "Delay Download",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "1.5");
+            float n = Float.parseFloat(s);
+            delay = (long) (n * 1000);
+        } catch (NullPointerException ex) {
+            System.exit(0);
+        } catch (NumberFormatException ex) {
+            Error();
+            JOptionPane.showMessageDialog(null,
+                    "Number Format !!!",
+                    "Number Format",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public Object[] getOptions() {
         return options;
     }
@@ -209,6 +260,14 @@ public class Dialog extends PathFolder {
 
     public void setSecResult(long secResult) {
         this.secResult = secResult;
+    }
+
+    public long getDelay() {
+        return delay;
+    }
+
+    public void setErrorline(int Errorline) {
+        this.Errorline = Errorline;
     }
 
 }
