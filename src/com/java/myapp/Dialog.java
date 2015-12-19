@@ -205,7 +205,14 @@ public class Dialog extends PathFolder {
             ex.printStackTrace();
         }
     }
-
+public void GoogleChrome(){
+Error();
+        JOptionPane.showMessageDialog(null,
+                "Please install programe GoogleChrome",
+                "Error GoogleChrome",
+                JOptionPane.ERROR_MESSAGE);
+        System.exit(0);
+}
     public void delay() {
         try {
             String s = (String) JOptionPane.showInputDialog(
