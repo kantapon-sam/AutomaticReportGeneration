@@ -55,10 +55,11 @@ public class AutomaticReportGeneration {
                     Arrays.sort(TimeData);
                     while (TotalFile < Folder.getFileReport().length) {
                         String[] arr = null;
+                        String[] arr2 = null;
                         int lineNumber = 0;
                         int Checkline = 0;
                         try {
-                            float arrData[][] = new float[20][3000];
+                            float arrData[][] = new float[20][30000];
                             for (int i = 0; i < Folder.getFileReport().length; i++) {
                                 if (TimeData[TotalFile] == Folder.getFileReport()[i].lastModified()) {
                                     index = i;
@@ -72,7 +73,6 @@ public class AutomaticReportGeneration {
                             BufferedReader br = new BufferedReader(new FileReader(Folder.getFileReport()[index]));
                             BufferedReader br_Checkline = new BufferedReader(new FileReader(Folder.getFileReport()[index]));
                             String line;
-
                             try {
                                 while ((line = br_Checkline.readLine()) != null) {
                                     Checkline++;
@@ -80,72 +80,119 @@ public class AutomaticReportGeneration {
                                 if (Folder.getFileReport()[index].getCanonicalPath().contains("Control CPU")) {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
-                                        lineNumber++;
-                                        Column.ControlCPU(arr, lineNumber, column, arrData);
+                                        arr2 = line.split("\\+");
+                                        Column.ControlCPU(arr, lineNumber, column, arrData, arr2.length);
+                                        if (arr2.length > 1) {
+                                            lineNumber++;
+                                        }
                                     }
                                 } else if (Folder.getFileReport()[index].getCanonicalPath().contains("CPU new")) {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
-                                        lineNumber++;
-                                        Column.CPUnew(arr, lineNumber, column, arrData);
+                                        arr2 = line.split("\\+");
+                                        Column.CPUnew(arr, lineNumber, column, arrData, arr2.length);
+                                        if (arr2.length > 1) {
+                                            lineNumber++;
+                                        }
                                     }
                                 } else if (Folder.getFileReport()[index].getCanonicalPath().contains("CPU Usage Slot")) {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
-                                        lineNumber++;
+                                        arr2 = line.split("\\+");
                                         switch (arr.length) {
                                             case 4:
-                                                Column.CPUSlot3(arr, lineNumber, column, arrData);
+                                                Column.CPUSlot3(arr, lineNumber, column, arrData, arr2.length);
                                                 break;
                                             case 3:
-                                                Column.CPUSlot2(arr, lineNumber, column, arrData);
+                                                Column.CPUSlot2(arr, lineNumber, column, arrData, arr2.length);
                                                 break;
                                             case 9:
-                                                Column.CPUSlot8(arr, lineNumber, column, arrData);
+                                                Column.CPUSlot8(arr, lineNumber, column, arrData, arr2.length);
                                                 break;
                                             default:
                                                 break;
+                                        }
+                                        if (arr2.length > 1) {
+                                            lineNumber++;
                                         }
                                     }
                                 } else if (Folder.getFileReport()[index].getCanonicalPath().contains("Data CPU")
                                         || Folder.getFileReport()[index].getCanonicalPath().contains("User Quota")) {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
-                                        lineNumber++;
-                                        Column.DataCPU(arr, lineNumber, column, arrData);
+                                        arr2 = line.split("\\+");
+
+                                        Column.DataCPU(arr, lineNumber, column, arrData, arr2.length);
+                                        if (arr2.length > 1) {
+                                            lineNumber++;
+                                        }
                                     }
                                 } else if (Folder.getFileReport()[index].getCanonicalPath().contains("HTTP")) {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
-                                        lineNumber++;
-                                        Column.HTTP(arr, lineNumber, column, arrData);
+                                        arr2 = line.split("\\+");
+                                        Column.HTTP(arr, lineNumber, column, arrData, arr2.length);
+                                        if (arr2.length > 1) {
+                                            lineNumber++;
+                                        }
+                                    }
+                                } else if (Folder.getFileReport()[index].getCanonicalPath().contains("IP Pool")) {
+                                    while ((line = br.readLine()) != null) {
+                                        arr = line.split(",");
+                                        arr2 = line.split("\\+");
+                                        switch (arr.length) {
+                                            case 2:
+                                                Column.IPPool(arr, lineNumber, column, arrData, arr2.length);
+                                                break;
+                                            case 7:
+                                                Column.IPPoolDOCSIS(arr, lineNumber, column, arrData, arr2.length);
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        if (arr2.length > 1) {
+                                            lineNumber++;
+                                        }
+
                                     }
                                 } else {
                                     System.out.println(Checkline + " line");
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
-                                        lineNumber++;
+                                        arr2 = line.split("\\+");
                                         switch (arr.length) {
                                             case 2:
-                                                Column.column_2(arr, lineNumber, column, arrData, Checkline);
+                                                Column.column_2(arr, lineNumber, column, arrData, arr2.length);
                                                 break;
                                             case 3:
-                                                Column.column_3(arr, lineNumber, column, arrData);
+                                                Column.column_3(arr, lineNumber, column, arrData, arr2.length);
+                                                break;
+                                            case 4:
+                                                Column.column_4(arr, lineNumber, column, arrData, arr2.length);
+                                                break;
+                                            case 5:
+                                                Column.column_5(arr, lineNumber, column, arrData, arr2.length);
+                                                break;
+                                            case 6:
+                                                Column.column_6(arr, lineNumber, column, arrData, arr2.length);
                                                 break;
                                             case 7:
-                                                Column.column_7(arr, lineNumber, column, arrData);
+                                                Column.column_7(arr, lineNumber, column, arrData, arr2.length);
                                                 break;
                                             case 8:
-                                                Column.column_8(arr, lineNumber, column, arrData);
+                                                Column.column_8(arr, lineNumber, column, arrData, arr2.length);
                                                 break;
                                             default:
                                                 break;
+                                        }
+                                        if (arr2.length > 1) {
+                                            lineNumber++;
                                         }
                                     }
                                 }
                             } catch (ArrayIndexOutOfBoundsException ex) {
                                 Dialog.setTotalFile(TotalFile);
-                                Dialog.FileError();
+                                Dialog.FileError(index);
                             }
                             br.close();
                             br_Checkline.close();
@@ -189,27 +236,49 @@ public class AutomaticReportGeneration {
 
                             } else if (Folder.getFileReport()[index].getCanonicalPath().contains("CPU new")) {
                                 System.out.printf("CPU,\t%.2f \n", max[0]);
-                            } else if (Folder.getFileReport()[index].getCanonicalPath().contains("IP Pool DOCSIS")) {
-                                System.out.printf("Platinum,\t%.0f \n", max[0]);
-                                System.out.printf("Gold,\t%.0f \n", max[1]);
-                                System.out.printf("Silver1,\t%.0f \n", max[2]);
-                                System.out.printf("Silver2,\t%.0f \n", max[3]);
-                                System.out.printf("Bronze,\t%.0f \n", max[4]);
-
+                            } else if (Folder.getFileReport()[index].getCanonicalPath().contains("IP Pool")) {
+                                switch (arr.length) {
+                                    case 2:
+                                        System.out.printf("CPU,\t%.2f \n", max[0]);
+                                        break;
+                                    case 7:
+                                        System.out.printf("Platinum,\t%.0f \n", max[0]);
+                                        System.out.printf("Gold,\t%.0f \n", max[1]);
+                                        System.out.printf("Silver1,\t%.0f \n", max[2]);
+                                        System.out.printf("Silver2,\t%.0f \n", max[3]);
+                                        System.out.printf("Bronze,\t%.0f \n", max[4]);
+                                        break;
+                                    default:
+                                        break;
+                                }
                             } else {
                                 switch (arr.length) {
                                     case 2:
-                                        if (Checkline == 346) {
-                                            System.out.printf("CPU,\t%.0f \n", max[0]);
-                                        } else if (Checkline == 348) {
-                                            System.out.printf("CPU,\t%.2f \n", max[0]);
-                                        }
+                                        System.out.printf("CPU,\t%.0f \n", max[0]);
                                         break;
                                     case 3:
                                         System.out.printf("IN,\t%.2f \n", max[0]);
                                         System.out.printf("OUT,\t%.2f \n", max[1]);
                                         most = max(max[0], max[1]);
                                         System.out.printf("MOST,\t%.2f \n", most);
+                                        break;
+                                    case 4:
+                                        System.out.printf("CPU,\t%.2f \n", max[0]);
+                                        System.out.printf("CPU,\t%.2f \n", max[1]);
+                                        System.out.printf("CPU,\t%.2f \n", max[2]);
+                                        break;
+                                    case 5:
+                                        System.out.printf("CPU,\t%.2f \n", max[0]);
+                                        System.out.printf("CPU,\t%.2f \n", max[1]);
+                                        System.out.printf("CPU,\t%.2f \n", max[2]);
+                                        System.out.printf("CPU,\t%.2f \n", max[3]);
+                                        break;
+                                    case 6:
+                                        System.out.printf("CPU,\t%.2f \n", max[0]);
+                                        System.out.printf("CPU,\t%.2f \n", max[1]);
+                                        System.out.printf("CPU,\t%.2f \n", max[2]);
+                                        System.out.printf("CPU,\t%.2f \n", max[3]);
+                                        System.out.printf("CPU,\t%.2f \n", max[4]);
                                         break;
                                     case 7:
                                         System.out.printf("PNC1,\t%.2f \n", max[0]);
@@ -319,13 +388,32 @@ public class AutomaticReportGeneration {
                                 CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                 Writer.DataCPUNolinebreaks(CPU, Folder, index, max);
                                 Writer.DataCPULinespacing(CPU_space, Folder, index, max);
-                            } else if (Folder.getFileReport()[index].getCanonicalPath().contains("IP Pool DOCSIS")) {
-                                FileWriter IPPool;
-                                FileWriter IPPool_space;
-                                IPPool = new FileWriter(Csv.getFileWriteMax(), true);
-                                IPPool_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                Writer.DOCSISNolinebreaks(IPPool, Folder, index, max);
-                                Writer.DOCSISLinespacing(IPPool_space, Folder, index, max);
+                            } else if (Folder.getFileReport()[index].getCanonicalPath().contains("HTTP")) {
+                                FileWriter HTTP;
+                                FileWriter HTTP_space;
+                                HTTP = new FileWriter(Csv.getFileWriteMax(), true);
+                                HTTP_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                Writer.HTTPNolinebreaks(HTTP, Folder, index, max);
+                                Writer.HTTPLinespacing(HTTP_space, Folder, index, max);
+                            } else if (Folder.getFileReport()[index].getCanonicalPath().contains("IP Pool")) {
+                                switch (arr.length) {
+                                    case 2:
+                                        FileWriter CPUPool;
+                                        FileWriter CPU_space;
+                                        CPUPool = new FileWriter(Csv.getFileWriteMax(), true);
+                                        CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        Writer.CPUPoolNolinebreaks(CPUPool, Folder, index, max);
+                                        Writer.CPUPoolLinespacing(CPU_space, Folder, index, max);
+                                        break;
+                                    case 7:
+                                        FileWriter IPPool;
+                                        FileWriter IPPool_space;
+                                        IPPool = new FileWriter(Csv.getFileWriteMax(), true);
+                                        IPPool_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        Writer.DOCSISNolinebreaks(IPPool, Folder, index, max);
+                                        Writer.DOCSISLinespacing(IPPool_space, Folder, index, max);
+                                        break;
+                                }
                             } else {
                                 switch (arr.length) {
                                     case 2:
@@ -333,8 +421,8 @@ public class AutomaticReportGeneration {
                                         FileWriter CPU_space;
                                         CPU = new FileWriter(Csv.getFileWriteMax(), true);
                                         CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.CPUNolinebreaks(CPU, Folder, index, max, Checkline);
-                                        Writer.CPULinespacing(CPU_space, Folder, index, max, Checkline);
+                                        Writer.CPUNolinebreaks(CPU, Folder, index, max);
+                                        Writer.CPULinespacing(CPU_space, Folder, index, max);
                                         break;
                                     case 3:
                                         FileWriter IN_OUT;
@@ -350,6 +438,30 @@ public class AutomaticReportGeneration {
                                         Writer.Nolinebreaks(IN_OUT, Most, Folder, index, max, most);
                                         Writer.Linespacing(IN_OUT_space, Most_space, Folder, index, max, most);
                                         Writer.single_rowNolinebreaks(IN_OUTsingle_row, Folder, index, max);
+                                        break;
+                                    case 4:
+                                        FileWriter column4;
+                                        FileWriter column4_space;
+                                        column4 = new FileWriter(Csv.getFileWriteMax(), true);
+                                        column4_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        Writer.Nolinebreaks4(column4, Folder, index, max);
+                                        Writer.Linespacing4(column4_space, Folder, index, max);
+                                        break;
+                                    case 5:
+                                        FileWriter column5;
+                                        FileWriter column5_space;
+                                        column5 = new FileWriter(Csv.getFileWriteMax(), true);
+                                        column5_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        Writer.Nolinebreaks5(column5, Folder, index, max);
+                                        Writer.Linespacing5(column5_space, Folder, index, max);
+                                        break;
+                                    case 6:
+                                        FileWriter column6;
+                                        FileWriter column6_space;
+                                        column6 = new FileWriter(Csv.getFileWriteMax(), true);
+                                        column6_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        Writer.Nolinebreaks6(column6, Folder, index, max);
+                                        Writer.Linespacing6(column6_space, Folder, index, max);
                                         break;
                                     case 7:
                                         FileWriter IPPool7;
@@ -446,7 +558,6 @@ public class AutomaticReportGeneration {
                                 }
                                 indexline++;
                                 Dialog.setErrorline(indexline);
-                                //d.browse(new URI(arr[1]));
                                 Process p = Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start chrome \"" + arr[1] + "\""});
                                 Thread.sleep(Dialog.getDelay());
                             }
@@ -461,7 +572,7 @@ public class AutomaticReportGeneration {
                                 }
                             }
                             Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
-                            new StopProgram();
+                            new StopProgram();                          
                             for (File fileURL : selectURL.getURLinFolder()) {
                                 Scanner scan = new Scanner(fileURL);
                                 BufferedReader br = new BufferedReader(new FileReader(fileURL));
@@ -499,7 +610,6 @@ public class AutomaticReportGeneration {
                                     }
                                     indexline++;
                                     Dialog.setErrorline(indexline);
-                                    //d.browse(new URI(arr[1]));
                                     Process p = Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start chrome \"" + arr[1] + "\""});
                                     Thread.sleep(Dialog.getDelay());
                                 }
@@ -522,7 +632,6 @@ public class AutomaticReportGeneration {
                     System.out.println("time = " + ((stopDownload - startDownload) / 1000));
                     Dialog.setSecDownload((stopDownload - startDownload) / 1000);
                     if (Connect.getError() == 0) {
-                        //Process p = Runtime.getRuntime().exec("taskkill /F /IM chrome.exe");
                         Dialog.NoErrorDownload();
                     }
                     System.exit(0);

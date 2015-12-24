@@ -67,23 +67,18 @@ public class Writer {
         }
     }
 
-    public static void CPUNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max, int Checkline) {
+    public static void CPUNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max) {
         try {
-            if (Checkline == 346) {
-                CPU.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
-                CPU.close();
-            } else if (Checkline == 348) {
-                CPU.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
-                CPU.close();
-            }
 
+            CPU.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
+            CPU.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void CPULinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max, int Checkline) {
+    public static void CPULinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max) {
         try {
 
             CPU_space.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
@@ -137,7 +132,6 @@ public class Writer {
             NULL.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
-            System.out.println("bb");
             ex.printStackTrace();
         }
     }
@@ -328,4 +322,121 @@ public class Writer {
         }
     }
 
+    public static void CPUPoolNolinebreaks(FileWriter CPUPool, PathFolder Folder, int index, float[] max) {
+        try {
+            CPUPool.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            CPUPool.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void CPUPoolLinespacing(FileWriter CPUPool_space, PathFolder Folder, int index, float[] max) {
+        try {
+            CPUPool_space.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            CPUPool_space.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void HTTPNolinebreaks(FileWriter HTTP, PathFolder Folder, int index, float[] max) {
+        try {
+            HTTP.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            HTTP.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void HTTPLinespacing(FileWriter HTTP_space, PathFolder Folder, int index, float[] max) {
+        try {
+            HTTP_space.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            HTTP_space.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void Nolinebreaks4(FileWriter column4, PathFolder Folder, int index, float[] max) {
+        try {
+            column4.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            column4.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            column4.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
+            column4.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void Linespacing4(FileWriter column4_space, PathFolder Folder, int index, float[] max) {
+        try {
+            column4_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            column4_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            column4_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
+            column4_space.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void Nolinebreaks5(FileWriter column5, PathFolder Folder, int index, float[] max) {
+        try {
+            column5.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            column5.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            column5.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
+            column5.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
+            column5.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void Linespacing5(FileWriter column5_space, PathFolder Folder, int index, float[] max) {
+        try {
+            column5_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            column5_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            column5_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
+            column5_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
+            column5_space.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void Nolinebreaks6(FileWriter column6, PathFolder Folder, int index, float[] max) {
+        try {
+            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
+            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
+            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n");
+            column6.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void Linespacing6(FileWriter column6_space, PathFolder Folder, int index, float[] max) {
+        try {
+            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
+            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
+            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n\n");
+            column6_space.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
