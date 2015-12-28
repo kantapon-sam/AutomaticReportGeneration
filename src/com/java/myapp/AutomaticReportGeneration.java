@@ -13,8 +13,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Scanner;
+import javax.swing.JFrame;
 
-public class AutomaticReportGeneration {
+public class AutomaticReportGeneration extends JFrame{
 
     public static void main(String[] args) {
         Dialog.setLAF();
