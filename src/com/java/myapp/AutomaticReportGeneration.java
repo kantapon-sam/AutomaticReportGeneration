@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JFrame;
 
-public class AutomaticReportGeneration extends JFrame{
+public class AutomaticReportGeneration extends JFrame {
 
     public static void main(String[] args) {
         Dialog.setLAF();
@@ -496,6 +496,11 @@ public class AutomaticReportGeneration extends JFrame{
                     SelectURL selectURL = new SelectURL();
                     URLConnection Connect = new URLConnection();
                     long startDownload = System.currentTimeMillis();
+                    if (!Folder.getFoldeSuccess().exists()) {
+                        Folder.getFoldeSuccess().mkdirs();
+                        Dialog.NoFolder();
+                        System.exit(0);
+                    }
                     try {
                         if (Folder.getFoldeSuccess().isDirectory()) {
                             for (File fileSuccess : Folder.getFileSuccess()) {
@@ -573,7 +578,7 @@ public class AutomaticReportGeneration extends JFrame{
                                 }
                             }
                             Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
-                            new StopProgram();                          
+                            new StopProgram();
                             for (File fileURL : selectURL.getURLinFolder()) {
                                 Scanner scan = new Scanner(fileURL);
                                 BufferedReader br = new BufferedReader(new FileReader(fileURL));

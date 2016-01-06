@@ -16,7 +16,7 @@ public class StopProgram extends JFrame implements ActionListener {
 
         this.frame = new JFrame();
         this.frame.setVisible(true);
-
+        this.frame.setResizable(false);
         this.frame.setTitle("AutomaticReportGeneration");
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Image image = new ImageIcon("image\\custom-reports.png").getImage();
@@ -30,7 +30,7 @@ public class StopProgram extends JFrame implements ActionListener {
 
         this.frame.add(panel);
         this.frame.pack();
-        this.frame.setSize(200, 100);
+        this.frame.setSize(200, 62);
         this.frame.setLocation(1100, 10);
     }
 
