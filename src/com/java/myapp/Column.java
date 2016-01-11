@@ -10,18 +10,8 @@ public class Column {
     }
 
     public static void column_3(String[] arr, int lineNumber, float[] column, float[][] arrData, int length) {
-        if (length > 1) {
-            String[] s = new String[2];
-            for (int i = 0; i < s.length; i++) {
-                s[i] = arr[i + 1].split("\"")[1];
-
-                if (s[i].equals("NaN")) {
-                    s[i] = "0";
-                }
-                column[i] = (float) (Float.parseFloat(s[i]) / pow(10, 6));
-                arrData[i][lineNumber] = column[i];
-            }
-        }
+        String[] s = new String[2];
+        CalculateDiv6(arr, s, column, lineNumber, arrData, length);
     }
 
     public static void column_7(String[] arr, int lineNumber, float[] column, float[][] arrData, int length) {
@@ -110,5 +100,25 @@ public class Column {
     public static void column_6(String[] arr, int lineNumber, float[] column, float[][] arrData, int length) {
         String[] s = new String[5];
         Calculate(arr, s, column, lineNumber, arrData, length);
+    }
+
+    public static void ConnectionRate(String[] arr, int lineNumber, float[] column, float[][] arrData, int length) {
+        String[] s = new String[1];
+        CalculateDiv6(arr, s, column, lineNumber, arrData, length);
+
+    }
+
+    public static void CalculateDiv6(String[] arr, String[] s, float[] column, int lineNumber, float[][] arrData, int length) {
+        if (length > 1) {
+            for (int i = 0; i < s.length; i++) {
+                s[i] = arr[i + 1].split("\"")[1];
+
+                if (s[i].equals("NaN")) {
+                    s[i] = "0";
+                }
+                column[i] = (float) (Float.parseFloat(s[i]) / pow(10, 6));
+                arrData[i][lineNumber] = column[i];
+            }
+        }
     }
 }

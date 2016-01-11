@@ -5,12 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import sun.audio.*;
 
 public class Dialog extends PathFolder {
-    
+
     private final Object[] options = {"Result", "Download", "Exit"};
     private final Object[] login = {"OK", "Cancel"};
     private int Numberlogin = 0;
@@ -24,22 +26,23 @@ public class Dialog extends PathFolder {
     private long delay = 0;
     int Errorline = 0;
     protected AudioStream Music;
+
     public static void setLAF() {
-        
+
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (Exception e) {
             System.err.println("Failed to set LookAndFeel");
-            
+
         }
     }
-    
+
     public void StatProgram(Object[] options) {
         try {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Notify Messaging.wav"));
             Music = new AudioStream(InputStream);
             AudioPlayer.player.start(Music);
-            
+
             choice = JOptionPane.showOptionDialog(null,
                     "Automatic Report Generation",
                     "Automatic Report Generation", JOptionPane.YES_NO_CANCEL_OPTION,
@@ -53,9 +56,9 @@ public class Dialog extends PathFolder {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+
     }
-    
+
     public void login() {
         Numberlogin = JOptionPane.showOptionDialog(null,
                 "Login",
@@ -65,9 +68,9 @@ public class Dialog extends PathFolder {
         if (Numberlogin == 1) {
             System.exit(0);
         }
-        
+
     }
-    
+
     public void URLError() {
         Error();
         JOptionPane.showMessageDialog(null,
@@ -76,7 +79,7 @@ public class Dialog extends PathFolder {
                 JOptionPane.ERROR_MESSAGE);
         System.exit(0);
     }
-    
+
     public void LineURLError() {
         Error();
         JOptionPane.showMessageDialog(null,
@@ -85,7 +88,7 @@ public class Dialog extends PathFolder {
                 JOptionPane.ERROR_MESSAGE);
         System.out.println("URL ERROR!!! Line = " + lineNumber);
     }
-    
+
     public void NoLAN() {
         Error();
         JOptionPane.showMessageDialog(null,
@@ -93,7 +96,7 @@ public class Dialog extends PathFolder {
                 "No Connection!",
                 JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public void FileError(int index) {
         Error();
         JOptionPane.showMessageDialog(null,
@@ -101,7 +104,7 @@ public class Dialog extends PathFolder {
                 "File Error!",
                 JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public void NoFile() {
         try {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Background.wav"));
@@ -117,7 +120,7 @@ public class Dialog extends PathFolder {
             ex.printStackTrace();
         }
     }
-    
+
     public void NoFolder() {
         try {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Background.wav"));
@@ -133,7 +136,7 @@ public class Dialog extends PathFolder {
             ex.printStackTrace();
         }
     }
-    
+
     public void format() {
         try {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Background.wav"));
@@ -149,7 +152,7 @@ public class Dialog extends PathFolder {
         }
         System.exit(0);
     }
-    
+
     public void fileOpen() {
         Error();
         JOptionPane.showMessageDialog(null,
@@ -158,7 +161,7 @@ public class Dialog extends PathFolder {
                 JOptionPane.ERROR_MESSAGE);
         System.exit(0);
     }
-    
+
     public void Error() {
         try {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Error.wav"));
@@ -169,9 +172,13 @@ public class Dialog extends PathFolder {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+
     }
-    
+
+    public void Success() {
+        java.awt.Toolkit.getDefaultToolkit().beep();
+    }
+
     public void NoErrorSuccess() {
         long minute = 0;
         try {
@@ -188,7 +195,7 @@ public class Dialog extends PathFolder {
             ex.printStackTrace();
         }
     }
-    
+
     public void NoErrorDownload() {
         try {
             InputStream = new FileInputStream(new File(getPathFolderMusic() + "\\Windows Background.wav"));
@@ -204,7 +211,7 @@ public class Dialog extends PathFolder {
             ex.printStackTrace();
         }
     }
-    
+
     public void GoogleChrome() {
         Error();
         JOptionPane.showMessageDialog(null,
@@ -213,7 +220,7 @@ public class Dialog extends PathFolder {
                 JOptionPane.ERROR_MESSAGE);
         System.exit(0);
     }
-    
+
     public void delay() {
         try {
             String s = (String) JOptionPane.showInputDialog(
@@ -237,45 +244,45 @@ public class Dialog extends PathFolder {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public Object[] getOptions() {
         return options;
     }
-    
+
     public int getLineNumber() {
         return lineNumber;
     }
-    
+
     public int getChoice() {
         return choice;
     }
-    
+
     public void setLineNumber(int lineNumber) {
         this.lineNumber = lineNumber;
     }
-    
+
     public void setTotalFile(int TotalFile) {
         this.TotalFile = TotalFile;
     }
-    
+
     public void setChoice(int choice) {
         this.choice = choice;
     }
-    
+
     public void setSecDownload(long secDownload) {
         this.secDownload = secDownload;
     }
-    
+
     public void setSecResult(long secResult) {
         this.secResult = secResult;
     }
-    
+
     public long getDelay() {
         return delay;
     }
-    
+
     public void setErrorline(int Errorline) {
         this.Errorline = Errorline;
     }
-    
+
 }

@@ -439,4 +439,24 @@ public class Writer {
             ex.printStackTrace();
         }
     }
+
+    public static void ConnectionRateNolinebreaks(FileWriter ConnectionRate, PathFolder Folder, int index, float[] max) {
+        try {
+            ConnectionRate.write("\"[Common-Pool]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            ConnectionRate.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void ConnectionRateLinespacing(FileWriter ConnectionRate_space, PathFolder Folder, int index, float[] max) {
+          try {
+            ConnectionRate_space.write("\"[Common-Pool]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            ConnectionRate_space.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
