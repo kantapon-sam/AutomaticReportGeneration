@@ -555,11 +555,10 @@ public class AutomaticReportGeneration extends JFrame {
 
                                 if (arr[1].charAt(0) == '/') {
                                     for (int i = 0; i < 100; i++) {
-                                        String cacti = String.valueOf(i);
-                                        if (str[0].contains("Cacti0".concat(cacti)) || str[0].contains("cacti0".concat(cacti))) {
-                                            arr[1] = "http://cacti0".concat(cacti) + "/cacti/graph_xport.php?local_graph_id=0&rra_id=2&view_type=";
-                                        } else if (str[0].contains("Cacti".concat(cacti)) || str[0].contains("cacti".concat(cacti))) {
+                                        String cacti = String.format("%02d", i);
+                                        if (str[0].contains("Cacti".concat(cacti)) || str[0].contains("cacti".concat(cacti))) {
                                             arr[1] = "http://cacti".concat(cacti) + "/cacti/graph_xport.php?local_graph_id=0&rra_id=2&view_type=";
+                                            break;
                                         }
                                     }
 
@@ -608,11 +607,10 @@ public class AutomaticReportGeneration extends JFrame {
                                     String[] arr = line.split(",");
                                     if (arr[1].charAt(0) == '/') {
                                         for (int i = 0; i < 100; i++) {
-                                            String cacti = String.valueOf(i);
-                                            if (str[0].contains("Cacti0".concat(cacti)) || str[0].contains("cacti0".concat(cacti))) {
-                                                arr[1] = "http://cacti0".concat(cacti) + "/cacti/graph_xport.php?local_graph_id=0&rra_id=2&view_type=";
-                                            } else if (str[0].contains("Cacti".concat(cacti)) || str[0].contains("cacti".concat(cacti))) {
+                                            String cacti = String.format("%02d", i);
+                                            if (str[0].contains("Cacti".concat(cacti)) || str[0].contains("cacti".concat(cacti))) {
                                                 arr[1] = "http://cacti".concat(cacti) + "/cacti/graph_xport.php?local_graph_id=0&rra_id=2&view_type=";
+                                                break;
                                             }
                                         }
                                         Thread.sleep(300);
@@ -664,5 +662,4 @@ public class AutomaticReportGeneration extends JFrame {
             ex.printStackTrace();
         }
     }
-
 }
