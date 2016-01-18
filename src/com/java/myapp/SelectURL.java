@@ -32,6 +32,7 @@ public class SelectURL {
                     + chooser.getSelectedFile());
         } else {
             System.out.println("No Selection ");
+            System.exit(0);
         }
         URL = new File(getChooser().getSelectedFile().toString());
         URLinFolder = URL.listFiles();

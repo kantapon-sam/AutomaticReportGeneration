@@ -14,6 +14,7 @@ public class Wait extends JFrame {
         super("Please wait"); // Title
         setSize(250, 80);
         setLocation(500, 280);
+        setResizable(false);
         // Icon
         Image image = new ImageIcon("image\\custom-reports.png").getImage();
         setIconImage(image);
