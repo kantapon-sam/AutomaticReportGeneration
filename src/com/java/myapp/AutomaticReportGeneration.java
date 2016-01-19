@@ -158,7 +158,7 @@ public class AutomaticReportGeneration extends JFrame {
 
                                     }
                                 } else {
-                                    System.out.println(Checkline + " line");
+                                 
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
@@ -547,7 +547,7 @@ public class AutomaticReportGeneration extends JFrame {
                                     str[0] = line;
                                 }
                             }
-                            System.out.println(Checkline);
+
                             br_Checkline.close();
                             String[] spac = new String[Checkline];
                             while ((line = br.readLine()) != null) {
@@ -566,6 +566,8 @@ public class AutomaticReportGeneration extends JFrame {
                                 }
                                 if (arr.length == 1 || arr == line.split(",")) {
                                     continue;
+                                } else if (arr[1].contains("rra_id=7")) {
+                                    arr[1] = rra_id(arr[1]);
                                 } else {
                                     lineNumber++;
                                     Connect.CheckConnection(arr[1], line, lineNumber);
@@ -617,6 +619,8 @@ public class AutomaticReportGeneration extends JFrame {
                                     }
                                     if (arr.length == 1 || arr == line.split(",")) {
                                         continue;
+                                    } else if (arr[1].contains("rra_id=7")) {
+                                        arr[1] = rra_id(arr[1]);
                                     } else {
                                         lineNumber++;
                                         Connect.CheckConnection(arr[1], line, lineNumber);
@@ -661,5 +665,13 @@ public class AutomaticReportGeneration extends JFrame {
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private static String rra_id(String str) {
+        String[] arr2 = str.split("rra_id=7");
+        long graph_end = System.currentTimeMillis() / 1000;
+        long graph_start = graph_end - 604800;
+        str = arr2[0] + "&rra_id=7&view_type=&graph_start=" + graph_start + "&graph_end=" + graph_end;
+        return str;
     }
 }

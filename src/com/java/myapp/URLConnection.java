@@ -45,14 +45,12 @@ public class URLConnection extends Dialog {
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
             int statusCode = http.getResponseCode();
             Desktop d = Desktop.getDesktop();
-            //d.browse(login);   
             Process p = Runtime.getRuntime().exec(new String[]{"cmd", "/c", "FTYPE"});
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line;
             int count = 0;
             while ((line = reader.readLine()) != null) {
-                if (line.contains("chrome.exe")||line.contains("Chrome.exe")) {
-                    System.out.println(line);
+                if (line.contains("chrome.exe") || line.contains("Chrome.exe")) {
                     count++;
                 }
             }
