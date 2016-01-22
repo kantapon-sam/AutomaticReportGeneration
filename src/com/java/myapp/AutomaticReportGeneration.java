@@ -12,9 +12,15 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
 
 public class AutomaticReportGeneration extends JFrame {
 
@@ -25,16 +31,49 @@ public class AutomaticReportGeneration extends JFrame {
         PathFileCSV Csv = new PathFileCSV();
         Dialog Dialog = new Dialog();
         Dialog.StatProgram(Dialog.getOptions());
+        Object[] options = {"OK", "Exit"};
         try {
             switch (Dialog.getChoice()) {
                 case 0:
                     long StartResult = System.currentTimeMillis();
-                    Wait wait = new Wait();
+
                     int TotalFile = 0;
                     int index = -1;
                     float max[] = new float[20];
                     float most = 0;
+                    long date_start;
+                    while (true) {
 
+                        SpinnerDateModel dateModel = new SpinnerDateModel(
+                                new Date(), null, null, Calendar.DAY_OF_MONTH);
+                        JSpinner dateSpinner = new JSpinner(dateModel);
+                        dateSpinner.setEditor(
+                                new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy"));
+                        Calendar Current = new GregorianCalendar();
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(Calendar.DAY_OF_MONTH, Current.getTime().getDate() - 7);
+                        dateSpinner.setValue(cal.getTime());
+                        int num = JOptionPane.showOptionDialog(
+                                null, dateSpinner,
+                                "Date Start", JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+                        System.out.println(dateSpinner.getValue());
+                        if (num == 1) {
+                            System.exit(0);
+                        }
+                        int day = dateModel.getDate().getDate();
+                        int month = dateModel.getDate().getMonth();
+                        int year = (dateModel.getDate().getYear()) + 1900;
+                        Calendar Date_Start = new GregorianCalendar(year, month, day);
+                        long START = Current.getTimeInMillis() - Date_Start.getTimeInMillis();
+                        date_start = Date_Start.getTimeInMillis() / 1000;
+                        if (START >= 0) {
+                            break;
+                        } else {
+                            Dialog.OverCurrent();
+                        }
+                    }
+                    Wait wait = new Wait();
                     if (!Folder.getFoldeSuccess().exists()) {
                         Folder.getFoldeSuccess().mkdirs();
                         Dialog.NoFolder();
@@ -69,12 +108,13 @@ public class AutomaticReportGeneration extends JFrame {
                             try {
                                 while ((line = br_Checkline.readLine()) != null) {
                                     Checkline++;
+
                                 }
                                 if (Folder.getFileReport()[n].getCanonicalPath().contains("Control CPU")) {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
-                                        Column.ControlCPU(arr, lineNumber, column, arrData, arr2.length);
+                                        Column.ControlCPU(arr, lineNumber, column, arrData, arr2.length, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -83,7 +123,7 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
-                                        Column.CPUnew(arr, lineNumber, column, arrData, arr2.length);
+                                        Column.CPUnew(arr, lineNumber, column, arrData, arr2.length, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -94,13 +134,13 @@ public class AutomaticReportGeneration extends JFrame {
                                         arr2 = line.split("\\+");
                                         switch (arr.length) {
                                             case 4:
-                                                Column.CPUSlot3(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.CPUSlot3(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             case 3:
-                                                Column.CPUSlot2(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.CPUSlot2(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             case 9:
-                                                Column.CPUSlot8(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.CPUSlot8(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             default:
                                                 break;
@@ -115,7 +155,7 @@ public class AutomaticReportGeneration extends JFrame {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
 
-                                        Column.DataCPU(arr, lineNumber, column, arrData, arr2.length);
+                                        Column.DataCPU(arr, lineNumber, column, arrData, arr2.length, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -124,7 +164,7 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
-                                        Column.HTTP(arr, lineNumber, column, arrData, arr2.length);
+                                        Column.HTTP(arr, lineNumber, column, arrData, arr2.length, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -133,7 +173,7 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
-                                        Column.ConnectionRate(arr, lineNumber, column, arrData, arr2.length);
+                                        Column.ConnectionRate(arr, lineNumber, column, arrData, arr2.length, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -144,10 +184,10 @@ public class AutomaticReportGeneration extends JFrame {
                                         arr2 = line.split("\\+");
                                         switch (arr.length) {
                                             case 2:
-                                                Column.IPPool(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.IPPool(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             case 7:
-                                                Column.IPPoolDOCSIS(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.IPPoolDOCSIS(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             default:
                                                 break;
@@ -158,31 +198,31 @@ public class AutomaticReportGeneration extends JFrame {
 
                                     }
                                 } else {
-                                 
+
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
                                         switch (arr.length) {
                                             case 2:
-                                                Column.column_2(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.column_2(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             case 3:
-                                                Column.column_3(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.column_3(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             case 4:
-                                                Column.column_4(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.column_4(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             case 5:
-                                                Column.column_5(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.column_5(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             case 6:
-                                                Column.column_6(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.column_6(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             case 7:
-                                                Column.column_7(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.column_7(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             case 8:
-                                                Column.column_8(arr, lineNumber, column, arrData, arr2.length);
+                                                Column.column_8(arr, lineNumber, column, arrData, arr2.length, date_start);
                                                 break;
                                             default:
                                                 break;
@@ -501,10 +541,70 @@ public class AutomaticReportGeneration extends JFrame {
                     System.exit(0);
                     break;
                 case 1:
+                    long Startday = 0;
+                    long Endday = 0;
+                    while (true) {
+                        Calendar current = new GregorianCalendar();
+                        SpinnerDateModel dateModelStart = new SpinnerDateModel(
+                                new Date(), null, null, Calendar.DAY_OF_MONTH);
+                        JSpinner dateSpinnerStart = new JSpinner(dateModelStart);
+                        dateSpinnerStart.setEditor(
+                                new JSpinner.DateEditor(dateSpinnerStart, "dd/MM/yyyy"));
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(Calendar.DAY_OF_MONTH, current.getTime().getDate() - 7);
+                        dateSpinnerStart.setValue(cal.getTime());
+                        int num1 = JOptionPane.showOptionDialog(
+                                null, dateSpinnerStart,
+                                "Start Date", JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+                        if (num1 == 1) {
+                            System.exit(0);
+                        }
+                        SpinnerDateModel dateModelStop = new SpinnerDateModel(
+                                new Date(), null, null, Calendar.DAY_OF_MONTH);
+                        JSpinner dateSpinnerStop = new JSpinner(dateModelStop);
+                        dateSpinnerStop.setEditor(
+                                new JSpinner.DateEditor(dateSpinnerStop, "dd/MM/yyyy"));
 
+                        int num2 = JOptionPane.showOptionDialog(
+                                null, dateSpinnerStop,
+                                "Stop Date", JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+                        if (num2 == 1) {
+                            System.exit(0);
+                        }
+                        int day_Start = dateModelStart.getDate().getDate();
+                        int month_Start = dateModelStart.getDate().getMonth();
+                        int year_Start = (dateModelStart.getDate().getYear()) + 1900;
+
+                        Calendar start = new GregorianCalendar(year_Start, month_Start, day_Start);
+
+                        int day_End = dateModelStop.getDate().getDate();
+                        int month_End = dateModelStop.getDate().getMonth();
+                        int year_End = dateModelStop.getDate().getYear() + 1900;
+                        Calendar end = new GregorianCalendar(year_End, month_End, day_End);
+                        long diffMillisStart = current.getTimeInMillis() - start.getTimeInMillis();
+                        long diffDaysStart = diffMillisStart / (24 * 60 * 60 * 1000);
+                        //Current
+                        long diffMillisStop = current.getTimeInMillis() - end.getTimeInMillis();
+                        long diffDaysEnd = diffMillisStop / (24 * 60 * 60 * 1000);
+                        System.out.println(diffDaysEnd);
+                        Startday = diffDaysStart * 86400;
+                        Endday = diffDaysEnd * 86400;
+
+                        System.out.println(Startday);
+
+                        System.out.println(Endday);
+                        if ((diffDaysStart - diffDaysEnd >= 0) && (diffDaysEnd >= 0) && (diffDaysStart >= 0)) {
+                            break;
+                        } else {
+                            Dialog.DateTime();
+                        }
+                    }
                     SelectURL selectURL = new SelectURL();
                     URLConnection Connect = new URLConnection();
                     long startDownload = System.currentTimeMillis();
+
                     if (!Folder.getFoldeSuccess().exists()) {
                         Folder.getFoldeSuccess().mkdirs();
                         Dialog.NoFolder();
@@ -522,6 +622,7 @@ public class AutomaticReportGeneration extends JFrame {
                                 fileReport.delete();
                             }
                         }
+
                         if (selectURL.getChooser().getSelectedFile().getName().contains(".txt")
                                 || selectURL.getChooser().getSelectedFile().getName().contains(".csv")) {
                             while (true) {
@@ -566,10 +667,13 @@ public class AutomaticReportGeneration extends JFrame {
                                 }
                                 if (arr.length == 1 || arr == line.split(",")) {
                                     continue;
-                                } else if (arr[1].contains("rra_id=7")) {
-                                    arr[1] = rra_id(arr[1]);
+                                } else if (arr[1].contains("Login_Cacti") || arr[1].contains("login_cacti")) {
+                                    arr[1] = arr[1];
+                                } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29")) {
+                                    arr[1] = rra_id7(arr[1]);
                                 } else {
                                     lineNumber++;
+                                    arr[1] = rra_id2(arr[1], Startday, Endday);
                                     Connect.CheckConnection(arr[1], line, lineNumber);
                                 }
                                 indexline++;
@@ -619,10 +723,13 @@ public class AutomaticReportGeneration extends JFrame {
                                     }
                                     if (arr.length == 1 || arr == line.split(",")) {
                                         continue;
-                                    } else if (arr[1].contains("rra_id=7")) {
-                                        arr[1] = rra_id(arr[1]);
+                                    } else if (arr[1].contains("Login_Cacti") || arr[1].contains("login_cacti")) {
+                                        arr[1] = arr[1];
+                                    } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29")) {
+                                        arr[1] = rra_id7(arr[1]);
                                     } else {
                                         lineNumber++;
+                                        arr[1] = rra_id2(arr[1], Startday, Endday);
                                         Connect.CheckConnection(arr[1], line, lineNumber);
                                     }
                                     indexline++;
@@ -667,11 +774,21 @@ public class AutomaticReportGeneration extends JFrame {
         }
     }
 
-    private static String rra_id(String str) {
-        String[] arr2 = str.split("rra_id=7");
+    private static String rra_id7(String str) {
+        String[] arr2 = str.split("rra_id=");
         long graph_end = System.currentTimeMillis() / 1000;
         long graph_start = graph_end - 604800;
         str = arr2[0] + "&rra_id=7&view_type=&graph_start=" + graph_start + "&graph_end=" + graph_end;
+        return str;
+    }
+
+    private static String rra_id2(String str, long Startday, long Endday) {
+        Date date = new Date();
+        String[] arr2 = str.split("rra_id=");
+        int one_day = (date.getHours() * 60 * 60) + (date.getMinutes() * 60) + (date.getSeconds() + 300);
+        long graph_start = Startday + one_day;
+        long graph_end = Endday + one_day;
+        str = arr2[0] + "&rra_id=2&view_type=&graph_start=-" + graph_start + "&graph_end=-" + graph_end;
         return str;
     }
 }

@@ -22,6 +22,9 @@ public class Dialog extends PathFolder {
     private long secDownload = 0;
     private long secResult = 0;
     private long delay = 0;
+    private String dateStart;
+    private String dateStop;
+
     int Errorline = 0;
     protected AudioStream Music;
 
@@ -243,6 +246,49 @@ public class Dialog extends PathFolder {
         }
     }
 
+    public void DateStart() {
+
+        dateStart = (String) JOptionPane.showInputDialog(
+                null,
+                "Date Start... dd/mm/yyyy\n"
+                + "Ex. 21/01/2016",
+                "Date Start...",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "01/01/2016");
+
+    }
+
+    public void DateEnd() {
+
+        dateStop = (String) JOptionPane.showInputDialog(
+                null,
+                "Date Stop... dd/mm/yyyy\n"
+                + "Ex. 21/01/2016",
+                "Date Stop...",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "02/01/2016");
+
+    }
+
+    public void DateTime() {
+        Error();
+        JOptionPane.showMessageDialog(null,
+                "Start date<= End date\nStart date or End date > Current",
+                "Error Date",
+                JOptionPane.ERROR_MESSAGE);
+
+    }
+public void OverCurrent() {
+          Error();
+        JOptionPane.showMessageDialog(null,
+                "Start date over current !!!",
+                "Error Current",
+                JOptionPane.ERROR_MESSAGE);
+    }
     public Object[] getOptions() {
         return options;
     }
@@ -282,5 +328,15 @@ public class Dialog extends PathFolder {
     public void setErrorline(int Errorline) {
         this.Errorline = Errorline;
     }
+
+    public String getDateStart() {
+        return dateStart;
+    }
+
+    public String getDateStop() {
+        return dateStop;
+    }
+
+    
 
 }
