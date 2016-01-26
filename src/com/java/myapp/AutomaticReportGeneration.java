@@ -35,8 +35,6 @@ public class AutomaticReportGeneration extends JFrame {
         try {
             switch (Dialog.getChoice()) {
                 case 0:
-                    long StartResult = System.currentTimeMillis();
-
                     int TotalFile = 0;
                     int index = -1;
                     float max[] = new float[20];
@@ -670,7 +668,7 @@ public class AutomaticReportGeneration extends JFrame {
                                 } else if (arr[1].contains("Login_Cacti") || arr[1].contains("login_cacti")) {
                                     arr[1] = arr[1];
                                 } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29")) {
-                                    arr[1] = rra_id7(arr[1]);
+                                    arr[1] = rra_id2_7_3_8(arr[1], Startday, Endday);
                                 } else {
                                     lineNumber++;
                                     arr[1] = rra_id2(arr[1], Startday, Endday);
@@ -726,7 +724,7 @@ public class AutomaticReportGeneration extends JFrame {
                                     } else if (arr[1].contains("Login_Cacti") || arr[1].contains("login_cacti")) {
                                         arr[1] = arr[1];
                                     } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29")) {
-                                        arr[1] = rra_id7(arr[1]);
+                                        arr[1] = rra_id2_7_3_8(arr[1], Startday, Endday);
                                     } else {
                                         lineNumber++;
                                         arr[1] = rra_id2(arr[1], Startday, Endday);
@@ -774,14 +772,6 @@ public class AutomaticReportGeneration extends JFrame {
         }
     }
 
-    private static String rra_id7(String str) {
-        String[] arr2 = str.split("rra_id=");
-        long graph_end = System.currentTimeMillis() / 1000;
-        long graph_start = graph_end - 604800;
-        str = arr2[0] + "&rra_id=7&view_type=&graph_start=" + graph_start + "&graph_end=" + graph_end;
-        return str;
-    }
-
     private static String rra_id2(String str, long Startday, long Endday) {
         Date date = new Date();
         String[] arr2 = str.split("rra_id=");
@@ -791,4 +781,16 @@ public class AutomaticReportGeneration extends JFrame {
         str = arr2[0] + "&rra_id=2&view_type=&graph_start=-" + graph_start + "&graph_end=-" + graph_end;
         return str;
     }
+
+    private static String rra_id2_7_3_8(String str, long Startday, long Endday) {
+        Date date = new Date();
+        String[] arr2 = str.split("rra_id=");
+        int one_day = (date.getHours() * 60 * 60) + (date.getMinutes() * 60) + (date.getSeconds());
+        long end = Endday + one_day;
+        long graph_end = (System.currentTimeMillis() / 1000) - end;
+        long graph_start = graph_end - 604800;
+        str = arr2[0] + "&rra_id=8&view_type=&graph_start=" + graph_start + "&graph_end=" + graph_end;
+        return str;
+    }
+
 }
