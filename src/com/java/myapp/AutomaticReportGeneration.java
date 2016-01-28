@@ -369,12 +369,15 @@ public class AutomaticReportGeneration extends JFrame {
                                 FileWriter Most;
                                 FileWriter NULL_space;
                                 FileWriter Most_space;
+                                FileWriter IN_OUTsingle_row;
                                 NULL = new FileWriter(Csv.getFileWriteMax(), true);
                                 Most = new FileWriter(Csv.getFileMOST(), true);
                                 NULL_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                 Most_space = new FileWriter(Csv.getFileMOST_space(), true);
+                                IN_OUTsingle_row = new FileWriter(Csv.getFileWriteIN_OUTsingle_row(), true);
                                 Writer.Nolinebreaks(NULL, Most);
                                 Writer.Linespacing(NULL_space, Most_space);
+                                Writer.single_rowNolinebreaks(IN_OUTsingle_row, max);
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("CPU Usage Slot")) {
                                 switch (arr.length) {
                                     case 4: {

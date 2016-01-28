@@ -451,9 +451,20 @@ public class Writer {
     }
 
     public static void ConnectionRateLinespacing(FileWriter ConnectionRate_space, PathFolder Folder, int index, float[] max) {
-          try {
+        try {
             ConnectionRate_space.write("\"[Common-Pool]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
             ConnectionRate_space.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void single_rowNolinebreaks(FileWriter IN_OUTsingle_row, float[] max) {
+        try {
+            IN_OUTsingle_row.write("\"[null]\",\n");
+            IN_OUTsingle_row.close();
+            IN_OUTsingle_row.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
             ex.printStackTrace();
