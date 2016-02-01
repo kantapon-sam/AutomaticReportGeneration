@@ -777,7 +777,7 @@ public class AutomaticReportGeneration extends JFrame {
 
     private static String rra_id2(String str, long Startday, long Endday) {
         Date date = new Date();
-        String[] arr2 = str.split("rra_id=");
+        String[] arr2 = str.split("&rra_id=");
         int one_day = (date.getHours() * 60 * 60) + (date.getMinutes() * 60) + (date.getSeconds() + 300);
         long graph_start = Startday + one_day;
         long graph_end = Endday + one_day;
@@ -787,7 +787,7 @@ public class AutomaticReportGeneration extends JFrame {
 
     private static String rra_id2_7_3_8(String str, long Startday, long Endday) {
         Date date = new Date();
-        String[] arr2 = str.split("rra_id=");
+        String[] arr2 = str.split("&rra_id=");
         int one_day = (date.getHours() * 60 * 60) + (date.getMinutes() * 60) + (date.getSeconds());
         long end = Endday + one_day;
         long graph_end = (System.currentTimeMillis() / 1000) - end;
