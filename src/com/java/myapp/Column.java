@@ -6,100 +6,107 @@ import java.util.GregorianCalendar;
 
 public class Column {
 
-    public static void column_2(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    private static String s_arr3 = "";
+
+    public static void column_2(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[1];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
+
     }
 
-    public static void column_3(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void column_3(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[2];
-        CalculateDiv6(arr, s, column, lineNumber, arrData, length, date_start);
+        CalculateDiv6(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void column_7(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void column_7(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[6];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void column_8(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void column_8(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[7];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void HTTP(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void HTTP(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[1];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void ControlCPU(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void ControlCPU(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[1];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void DataCPU(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void DataCPU(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[1];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void CPUSlot3(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void CPUSlot3(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[3];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void CPUSlot2(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void CPUSlot2(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[2];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void CPUSlot8(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void CPUSlot8(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[8];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void ALUCPU(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void ALUCPU(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[1];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void CPUnew(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void CPUnew(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[1];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void IPPool(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void IPPool(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[1];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void IPPoolDOCSIS(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void IPPoolDOCSIS(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[6];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void column_4(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void column_4(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[3];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void column_5(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void column_5(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[4];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void column_6(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void column_6(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[5];
-        Calculate(arr, s, column, lineNumber, arrData, length, date_start);
+        Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
     }
 
-    public static void ConnectionRate(String[] arr, int lineNumber, float[] column, float[][] arrData, int length, long date_start) {
+    public static void ConnectionRate(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[1];
-        CalculateDiv6(arr, s, column, lineNumber, arrData, length, date_start);
+        CalculateDiv6(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
 
     }
 
-    public static void Calculate(String[] arr, String[] s, float[] column, int lineNumber, float[][] arrData, int length, long date_start) {
+    public static void Calculate(String[] arr, String[] s, float[] column, int lineNumber, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
 
-        if (length > 1) {
+        if (arr3.length > 1) {
+            s_arr3 = arr3[1].split(",")[1].split("\"")[1];
+
+        }
+        if (arr2_length > 1) {
             long dateCSV = Date(arr[0]);
             if (dateCSV >= date_start) {
                 for (int i = 0; i < s.length; i++) {
@@ -114,8 +121,11 @@ public class Column {
         }
     }
 
-    public static void CalculateDiv6(String[] arr, String[] s, float[] column, int lineNumber, float[][] arrData, int length, long date_start) {
-        if (length > 1) {
+    public static void CalculateDiv6(String[] arr, String[] s, float[] column, int lineNumber, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
+        if (arr3.length > 1) {
+            s_arr3 = arr3[1].split(",")[1].split("\"")[1];
+        }
+        if (arr2_length > 1) {
             long dateCSV = Date(arr[0]);
             if (dateCSV >= date_start) {
 
@@ -146,4 +156,9 @@ public class Column {
         Calendar date = new GregorianCalendar(year, month, day);
         return (date.getTimeInMillis() / 1000);
     }
+
+    public static String getS_arr3() {
+        return s_arr3;
+    }
+
 }

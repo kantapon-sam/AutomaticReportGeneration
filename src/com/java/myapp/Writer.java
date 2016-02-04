@@ -6,12 +6,12 @@ import static java.lang.Math.round;
 
 public class Writer {
 
-    public static void Nolinebreaks(FileWriter Max, FileWriter Most, PathFolder Folder, int index, float[] max, float most) {
+    public static void Nolinebreaks(FileWriter Max, FileWriter Most, PathFolder Folder, int index, float[] max, float most, String str_arr3) {
         try {
-            Max.write("\"[IN]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
-            Max.write("\"[OUT]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            Max.write(str_arr3 + ",\"[IN]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            Max.write(str_arr3 + ",\"[OUT]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
             Max.close();
-            Most.write("\"[MOST]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + most + "\n");
+            Most.write(str_arr3 + ",\"[MOST]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + most + "\n");
 
             Most.close();
             System.out.println("Write success!");
@@ -20,14 +20,14 @@ public class Writer {
         }
     }
 
-    public static void Nolinebreaks7(FileWriter IPPool7, PathFolder Folder, int index, float[] max) {
+    public static void Nolinebreaks7(FileWriter IPPool7, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            IPPool7.write("\"[PNC1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
-            IPPool7.write("\"[PNC2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
-            IPPool7.write("\"[TSG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
-            IPPool7.write("\"[LTY]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
-            IPPool7.write("\"[MTG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n");
-            IPPool7.write("\"[UPC]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[5] + "\n");
+            IPPool7.write(str_arr3 + ",\"[PNC1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            IPPool7.write(str_arr3 + ",\"[PNC2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            IPPool7.write(str_arr3 + ",\"[TSG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
+            IPPool7.write(str_arr3 + ",\"[LTY]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
+            IPPool7.write(str_arr3 + ",\"[MTG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n");
+            IPPool7.write(str_arr3 + ",\"[UPC]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[5] + "\n");
             IPPool7.close();
 
             System.out.println("Write success!");
@@ -36,12 +36,12 @@ public class Writer {
         }
     }
 
-    public static void Linespacing(FileWriter Max_space, FileWriter Most_space, PathFolder Folder, int index, float[] max, float most) {
+    public static void Linespacing(FileWriter Max_space, FileWriter Most_space, PathFolder Folder, int index, float[] max, float most, String str_arr3) {
         try {
-            Max_space.write("\"[IN]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
-            Max_space.write("\"[OUT]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            Max_space.write(str_arr3 + ",\"[IN]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            Max_space.write(str_arr3 + ",\"[OUT]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
             Max_space.close();
-            Most_space.write("\"[MOST]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + most + "\n\n");
+            Most_space.write(str_arr3 + ",\"[MOST]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + most + "\n\n");
             Most_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -51,14 +51,14 @@ public class Writer {
 
     }
 
-    public static void Linespacing7(FileWriter IPPool_space, PathFolder Folder, int index, float[] max) {
+    public static void Linespacing7(FileWriter IPPool_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            IPPool_space.write("\"[PNC1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
-            IPPool_space.write("\"[PNC2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
-            IPPool_space.write("\"[TSG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
-            IPPool_space.write("\"[LTY]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
-            IPPool_space.write("\"[MTG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n\n");
-            IPPool_space.write("\"[UPC]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[5] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[PNC1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[PNC2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[TSG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[LTY]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[MTG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[UPC]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[5] + "\n\n");
             IPPool_space.close();
 
             System.out.println("Write success!");
@@ -67,10 +67,10 @@ public class Writer {
         }
     }
 
-    public static void CPUNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max) {
+    public static void CPUNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
 
-            CPU.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
+            CPU.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
             CPU.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -78,10 +78,10 @@ public class Writer {
         }
     }
 
-    public static void CPULinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max) {
+    public static void CPULinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
 
-            CPU_space.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
+            CPU_space.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
 
             CPU_space.close();
             System.out.println("Write success!");
@@ -90,15 +90,15 @@ public class Writer {
         }
     }
 
-    public static void Nolinebreaks8(FileWriter IPPool8, PathFolder Folder, int index, float[] max) {
+    public static void Nolinebreaks8(FileWriter IPPool8, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            IPPool8.write("\"[PNC1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
-            IPPool8.write("\"[PNC2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
-            IPPool8.write("\"[TSG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
-            IPPool8.write("\"[LTY]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
-            IPPool8.write("\"[MTG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n");
-            IPPool8.write("\"[MTG2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[5] + "\n");
-            IPPool8.write("\"[UPC]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[6] + "\n");
+            IPPool8.write(str_arr3 + ",\"[PNC1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            IPPool8.write(str_arr3 + ",\"[PNC2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            IPPool8.write(str_arr3 + ",\"[TSG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
+            IPPool8.write(str_arr3 + ",\"[LTY]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
+            IPPool8.write(str_arr3 + ",\"[MTG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n");
+            IPPool8.write(str_arr3 + ",\"[MTG2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[5] + "\n");
+            IPPool8.write(str_arr3 + ",\"[UPC]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[6] + "\n");
             IPPool8.close();
 
             System.out.println("Write success!");
@@ -107,15 +107,15 @@ public class Writer {
         }
     }
 
-    public static void Linespacing8(FileWriter IPPool8_space, PathFolder Folder, int index, float[] max) {
+    public static void Linespacing8(FileWriter IPPool8_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            IPPool8_space.write("\"[PNC1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
-            IPPool8_space.write("\"[PNC2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
-            IPPool8_space.write("\"[TSG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
-            IPPool8_space.write("\"[LTY]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
-            IPPool8_space.write("\"[MTG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n\n");
-            IPPool8_space.write("\"[MTG2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[5] + "\n\n");
-            IPPool8_space.write("\"[UPC]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[6] + "\n\n");
+            IPPool8_space.write(str_arr3 + ",\"[PNC1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            IPPool8_space.write(str_arr3 + ",\"[PNC2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            IPPool8_space.write(str_arr3 + ",\"[TSG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
+            IPPool8_space.write(str_arr3 + ",\"[LTY]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
+            IPPool8_space.write(str_arr3 + ",\"[MTG]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n\n");
+            IPPool8_space.write(str_arr3 + ",\"[MTG2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[5] + "\n\n");
+            IPPool8_space.write(str_arr3 + ",\"[UPC]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[6] + "\n\n");
             IPPool8_space.close();
 
             System.out.println("Write success!");
@@ -126,9 +126,9 @@ public class Writer {
 
     public static void Nolinebreaks(FileWriter NULL, FileWriter Most) {
         try {
-            Most.write("\"[null]\",\n");
+            Most.write("0,\"[null]\",\n");
             Most.close();
-            NULL.write("\"[null]\",\n");
+            NULL.write("0,\"[null]\",\n");
             NULL.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -138,9 +138,9 @@ public class Writer {
 
     public static void Linespacing(FileWriter NULL_space, FileWriter Most_space) {
         try {
-            Most_space.write("\"[null]\",\n\n");
+            Most_space.write("0,\"[null]\",\n\n");
             Most_space.close();
-            NULL_space.write("\"[null]\",\n\n");
+            NULL_space.write("0,\"[null]\",\n\n");
             NULL_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -148,49 +148,49 @@ public class Writer {
         }
     }
 
-    public static void ControlCPUNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max) {
+    public static void ControlCPUNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPU.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            CPU.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
             CPU.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void ControlCPULinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max) {
+    public static void ControlCPULinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPU_space.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            CPU_space.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
             CPU_space.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void DataCPUNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max) {
+    public static void DataCPUNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPU.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
+            CPU.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
             CPU.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void DataCPULinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max) {
+    public static void DataCPULinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPU_space.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
+            CPU_space.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
             CPU_space.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void DOCSISNolinebreaks(FileWriter IPPool, PathFolder Folder, int index, float[] max) {
+    public static void DOCSISNolinebreaks(FileWriter IPPool, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            IPPool.write("\"[Platinum]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
-            IPPool.write("\"[Gold]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
-            IPPool.write("\"[Silver1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
-            IPPool.write("\"[Silver2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
-            IPPool.write("\"[Bronze]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n");
+            IPPool.write(str_arr3 + ",\"[Platinum]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            IPPool.write(str_arr3 + ",\"[Gold]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            IPPool.write(str_arr3 + ",\"[Silver1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
+            IPPool.write(str_arr3 + ",\"[Silver2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
+            IPPool.write(str_arr3 + ",\"[Bronze]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n");
             IPPool.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -198,13 +198,13 @@ public class Writer {
         }
     }
 
-    public static void DOCSISLinespacing(FileWriter IPPool_space, PathFolder Folder, int index, float[] max) {
+    public static void DOCSISLinespacing(FileWriter IPPool_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            IPPool_space.write("\"[Platinum]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
-            IPPool_space.write("\"[Gold]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
-            IPPool_space.write("\"[Silver1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
-            IPPool_space.write("\"[Silver2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
-            IPPool_space.write("\"[Bronze]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[Platinum]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[Gold]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[Silver1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[Silver2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
+            IPPool_space.write(str_arr3 + ",\"[Bronze]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n\n");
             IPPool_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -212,11 +212,11 @@ public class Writer {
         }
     }
 
-    public static void CPUSlot3Nolinebreaks(FileWriter CPUSlot, PathFolder Folder, int index, float[] max) {
+    public static void CPUSlot3Nolinebreaks(FileWriter CPUSlot, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPUSlot.write("\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
-            CPUSlot.write("\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n");
-            CPUSlot.write("\"[CPUSlot3]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[2]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot3]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[2]) + "\n");
             CPUSlot.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -224,11 +224,11 @@ public class Writer {
         }
     }
 
-    public static void CPUSlot3Linespacing(FileWriter CPUSlot_space, PathFolder Folder, int index, float[] max) {
+    public static void CPUSlot3Linespacing(FileWriter CPUSlot_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPUSlot_space.write("\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot3]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[2]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot3]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[2]) + "\n\n");
             CPUSlot_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -236,10 +236,10 @@ public class Writer {
         }
     }
 
-    public static void CPUSlot2Nolinebreaks(FileWriter CPUSlot, PathFolder Folder, int index, float[] max) {
+    public static void CPUSlot2Nolinebreaks(FileWriter CPUSlot, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPUSlot.write("\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
-            CPUSlot.write("\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n");
             CPUSlot.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -247,10 +247,10 @@ public class Writer {
         }
     }
 
-    public static void CPUSlot2Linespacing(FileWriter CPUSlot_space, PathFolder Folder, int index, float[] max) {
+    public static void CPUSlot2Linespacing(FileWriter CPUSlot_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPUSlot_space.write("\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n\n");
             CPUSlot_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -258,16 +258,16 @@ public class Writer {
         }
     }
 
-    public static void CPUSlot8Nolinebreaks(FileWriter CPUSlot, PathFolder Folder, int index, float[] max) {
+    public static void CPUSlot8Nolinebreaks(FileWriter CPUSlot, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPUSlot.write("\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
-            CPUSlot.write("\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n");
-            CPUSlot.write("\"[CPUSlot3]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[2]) + "\n");
-            CPUSlot.write("\"[CPUSlot4]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[3]) + "\n");
-            CPUSlot.write("\"[CPUSlot5]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[4]) + "\n");
-            CPUSlot.write("\"[CPUSlot6]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[5]) + "\n");
-            CPUSlot.write("\"[CPUSlot7]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[6]) + "\n");
-            CPUSlot.write("\"[CPUSlot8]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[7]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot3]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[2]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot4]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[3]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot5]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[4]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot6]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[5]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot7]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[6]) + "\n");
+            CPUSlot.write(str_arr3 + ",\"[CPUSlot8]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[7]) + "\n");
             CPUSlot.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -275,16 +275,16 @@ public class Writer {
         }
     }
 
-    public static void CPUSlot8Linespacing(FileWriter CPUSlot_space, PathFolder Folder, int index, float[] max) {
+    public static void CPUSlot8Linespacing(FileWriter CPUSlot_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPUSlot_space.write("\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot3]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[2]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot4]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[3]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot5]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[4]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot6]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[5]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot7]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[6]) + "\n\n");
-            CPUSlot_space.write("\"[CPUSlot8]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[7]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot2]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[1]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot3]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[2]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot4]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[3]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot5]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[4]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot6]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[5]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot7]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[6]) + "\n\n");
+            CPUSlot_space.write(str_arr3 + ",\"[CPUSlot8]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[7]) + "\n\n");
             CPUSlot_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -292,9 +292,9 @@ public class Writer {
         }
     }
 
-    public static void CPUnewNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max) {
+    public static void CPUnewNolinebreaks(FileWriter CPU, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPU.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            CPU.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
             CPU.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -302,9 +302,9 @@ public class Writer {
         }
     }
 
-    public static void CPUnewLinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max) {
+    public static void CPUnewLinespacing(FileWriter CPU_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPU_space.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            CPU_space.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
             CPU_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -312,9 +312,9 @@ public class Writer {
         }
     }
 
-    public static void single_rowNolinebreaks(FileWriter IN_OUTsingle_row, PathFolder Folder, int index, float[] max) {
+    public static void single_rowNolinebreaks(FileWriter IN_OUTsingle_row, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            IN_OUTsingle_row.write("\"[IN-OUT]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "," + max[1] + "\n");
+            IN_OUTsingle_row.write(str_arr3 + ",\"[IN-OUT]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "," + max[1] + "\n");
             IN_OUTsingle_row.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -322,9 +322,9 @@ public class Writer {
         }
     }
 
-    public static void CPUPoolNolinebreaks(FileWriter CPUPool, PathFolder Folder, int index, float[] max) {
+    public static void CPUPoolNolinebreaks(FileWriter CPUPool, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPUPool.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            CPUPool.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
             CPUPool.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -332,9 +332,9 @@ public class Writer {
         }
     }
 
-    public static void CPUPoolLinespacing(FileWriter CPUPool_space, PathFolder Folder, int index, float[] max) {
+    public static void CPUPoolLinespacing(FileWriter CPUPool_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            CPUPool_space.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            CPUPool_space.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
             CPUPool_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -342,9 +342,9 @@ public class Writer {
         }
     }
 
-    public static void HTTPNolinebreaks(FileWriter HTTP, PathFolder Folder, int index, float[] max) {
+    public static void HTTPNolinebreaks(FileWriter HTTP, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            HTTP.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            HTTP.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
             HTTP.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -352,9 +352,9 @@ public class Writer {
         }
     }
 
-    public static void HTTPLinespacing(FileWriter HTTP_space, PathFolder Folder, int index, float[] max) {
+    public static void HTTPLinespacing(FileWriter HTTP_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            HTTP_space.write("\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            HTTP_space.write(str_arr3 + ",\"[CPU%]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
             HTTP_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -362,11 +362,11 @@ public class Writer {
         }
     }
 
-    public static void Nolinebreaks4(FileWriter column4, PathFolder Folder, int index, float[] max) {
+    public static void Nolinebreaks4(FileWriter column4, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            column4.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
-            column4.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
-            column4.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
+            column4.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            column4.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            column4.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
             column4.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -374,11 +374,11 @@ public class Writer {
         }
     }
 
-    public static void Linespacing4(FileWriter column4_space, PathFolder Folder, int index, float[] max) {
+    public static void Linespacing4(FileWriter column4_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            column4_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
-            column4_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
-            column4_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
+            column4_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            column4_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            column4_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
             column4_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -386,12 +386,12 @@ public class Writer {
         }
     }
 
-    public static void Nolinebreaks5(FileWriter column5, PathFolder Folder, int index, float[] max) {
+    public static void Nolinebreaks5(FileWriter column5, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            column5.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
-            column5.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
-            column5.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
-            column5.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
+            column5.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            column5.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            column5.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
+            column5.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
             column5.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -399,12 +399,12 @@ public class Writer {
         }
     }
 
-    public static void Linespacing5(FileWriter column5_space, PathFolder Folder, int index, float[] max) {
+    public static void Linespacing5(FileWriter column5_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            column5_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
-            column5_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
-            column5_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
-            column5_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
+            column5_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            column5_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            column5_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
+            column5_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
             column5_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -412,13 +412,13 @@ public class Writer {
         }
     }
 
-    public static void Nolinebreaks6(FileWriter column6, PathFolder Folder, int index, float[] max) {
+    public static void Nolinebreaks6(FileWriter column6, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
-            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
-            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
-            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
-            column6.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n");
+            column6.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            column6.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n");
+            column6.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n");
+            column6.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n");
+            column6.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n");
             column6.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -426,13 +426,13 @@ public class Writer {
         }
     }
 
-    public static void Linespacing6(FileWriter column6_space, PathFolder Folder, int index, float[] max) {
+    public static void Linespacing6(FileWriter column6_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
-            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
-            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
-            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
-            column6_space.write("\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n\n");
+            column6_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            column6_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[1] + "\n\n");
+            column6_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[2] + "\n\n");
+            column6_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[3] + "\n\n");
+            column6_space.write(str_arr3 + ",\"[CPU]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[4] + "\n\n");
             column6_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -440,9 +440,9 @@ public class Writer {
         }
     }
 
-    public static void ConnectionRateNolinebreaks(FileWriter ConnectionRate, PathFolder Folder, int index, float[] max) {
+    public static void ConnectionRateNolinebreaks(FileWriter ConnectionRate, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            ConnectionRate.write("\"[Common-Pool]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
+            ConnectionRate.write(str_arr3 + ",\"[Common-Pool]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n");
             ConnectionRate.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -450,9 +450,9 @@ public class Writer {
         }
     }
 
-    public static void ConnectionRateLinespacing(FileWriter ConnectionRate_space, PathFolder Folder, int index, float[] max) {
+    public static void ConnectionRateLinespacing(FileWriter ConnectionRate_space, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
-            ConnectionRate_space.write("\"[Common-Pool]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
+            ConnectionRate_space.write(str_arr3 + ",\"[Common-Pool]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] + "\n\n");
             ConnectionRate_space.close();
             System.out.println("Write success!");
         } catch (IOException ex) {
@@ -462,7 +462,7 @@ public class Writer {
 
     public static void single_rowNolinebreaks(FileWriter IN_OUTsingle_row, float[] max) {
         try {
-            IN_OUTsingle_row.write("\"[null]\",\n");
+            IN_OUTsingle_row.write("0,\"[null]\",\n");
             IN_OUTsingle_row.close();
             IN_OUTsingle_row.close();
             System.out.println("Write success!");

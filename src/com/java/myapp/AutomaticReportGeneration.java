@@ -94,6 +94,7 @@ public class AutomaticReportGeneration extends JFrame {
                         index = n;
                         String[] arr = null;
                         String[] arr2 = null;
+                        String[] arr3 = null;
                         int lineNumber = 0;
                         int Checkline = 0;
                         try {
@@ -112,7 +113,8 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
-                                        Column.ControlCPU(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                        arr3 = line.split("Graph ID:");
+                                        Column.ControlCPU(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -121,7 +123,8 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
-                                        Column.CPUnew(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                        arr3 = line.split("Graph ID:");
+                                        Column.CPUnew(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -130,15 +133,16 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
+                                        arr3 = line.split("Graph ID:");
                                         switch (arr.length) {
                                             case 4:
-                                                Column.CPUSlot3(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.CPUSlot3(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             case 3:
-                                                Column.CPUSlot2(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.CPUSlot2(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             case 9:
-                                                Column.CPUSlot8(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.CPUSlot8(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             default:
                                                 break;
@@ -152,8 +156,8 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
-
-                                        Column.DataCPU(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                        arr3 = line.split("Graph ID:");
+                                        Column.DataCPU(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -162,7 +166,8 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
-                                        Column.HTTP(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                        arr3 = line.split("Graph ID:");
+                                        Column.HTTP(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -171,7 +176,8 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
-                                        Column.ConnectionRate(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                        arr3 = line.split("Graph ID:");
+                                        Column.ConnectionRate(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -180,12 +186,13 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
+                                        arr3 = line.split("Graph ID:");
                                         switch (arr.length) {
                                             case 2:
-                                                Column.IPPool(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.IPPool(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             case 7:
-                                                Column.IPPoolDOCSIS(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.IPPoolDOCSIS(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             default:
                                                 break;
@@ -200,27 +207,28 @@ public class AutomaticReportGeneration extends JFrame {
                                     while ((line = br.readLine()) != null) {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
+                                        arr3 = line.split("Graph ID:");
                                         switch (arr.length) {
                                             case 2:
-                                                Column.column_2(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.column_2(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             case 3:
-                                                Column.column_3(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.column_3(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             case 4:
-                                                Column.column_4(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.column_4(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             case 5:
-                                                Column.column_5(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.column_5(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             case 6:
-                                                Column.column_6(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.column_6(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             case 7:
-                                                Column.column_7(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.column_7(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             case 8:
-                                                Column.column_8(arr, lineNumber, column, arrData, arr2.length, date_start);
+                                                Column.column_8(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                                 break;
                                             default:
                                                 break;
@@ -385,8 +393,8 @@ public class AutomaticReportGeneration extends JFrame {
                                         FileWriter CPUSlot_space;
                                         CPUSlot = new FileWriter(Csv.getFileWriteMax(), true);
                                         CPUSlot_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.CPUSlot3Nolinebreaks(CPUSlot, Folder, index, max);
-                                        Writer.CPUSlot3Linespacing(CPUSlot_space, Folder, index, max);
+                                        Writer.CPUSlot3Nolinebreaks(CPUSlot, Folder, index, max, Column.getS_arr3());
+                                        Writer.CPUSlot3Linespacing(CPUSlot_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     }
                                     case 3: {
@@ -394,8 +402,8 @@ public class AutomaticReportGeneration extends JFrame {
                                         FileWriter CPUSlot_space;
                                         CPUSlot = new FileWriter(Csv.getFileWriteMax(), true);
                                         CPUSlot_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.CPUSlot2Nolinebreaks(CPUSlot, Folder, index, max);
-                                        Writer.CPUSlot2Linespacing(CPUSlot_space, Folder, index, max);
+                                        Writer.CPUSlot2Nolinebreaks(CPUSlot, Folder, index, max, Column.getS_arr3());
+                                        Writer.CPUSlot2Linespacing(CPUSlot_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     }
                                     case 9: {
@@ -403,8 +411,8 @@ public class AutomaticReportGeneration extends JFrame {
                                         FileWriter CPUSlot_space;
                                         CPUSlot = new FileWriter(Csv.getFileWriteMax(), true);
                                         CPUSlot_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.CPUSlot8Nolinebreaks(CPUSlot, Folder, index, max);
-                                        Writer.CPUSlot8Linespacing(CPUSlot_space, Folder, index, max);
+                                        Writer.CPUSlot8Nolinebreaks(CPUSlot, Folder, index, max, Column.getS_arr3());
+                                        Writer.CPUSlot8Linespacing(CPUSlot_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     }
                                     default:
@@ -415,37 +423,37 @@ public class AutomaticReportGeneration extends JFrame {
                                 FileWriter CPU_space;
                                 CPU = new FileWriter(Csv.getFileWriteMax(), true);
                                 CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                Writer.CPUnewNolinebreaks(CPU, Folder, index, max);
-                                Writer.CPUnewLinespacing(CPU_space, Folder, index, max);
+                                Writer.CPUnewNolinebreaks(CPU, Folder, index, max, Column.getS_arr3());
+                                Writer.CPUnewLinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("Control CPU")) {
                                 FileWriter CPU;
                                 FileWriter CPU_space;
                                 CPU = new FileWriter(Csv.getFileWriteMax(), true);
                                 CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                Writer.ControlCPUNolinebreaks(CPU, Folder, index, max);
-                                Writer.ControlCPULinespacing(CPU_space, Folder, index, max);
+                                Writer.ControlCPUNolinebreaks(CPU, Folder, index, max, Column.getS_arr3());
+                                Writer.ControlCPULinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("Data CPU")
                                     || Folder.getFileReport()[n].getCanonicalPath().contains("User Quota")) {
                                 FileWriter CPU;
                                 FileWriter CPU_space;
                                 CPU = new FileWriter(Csv.getFileWriteMax(), true);
                                 CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                Writer.DataCPUNolinebreaks(CPU, Folder, index, max);
-                                Writer.DataCPULinespacing(CPU_space, Folder, index, max);
+                                Writer.DataCPUNolinebreaks(CPU, Folder, index, max, Column.getS_arr3());
+                                Writer.DataCPULinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("HTTP")) {
                                 FileWriter HTTP;
                                 FileWriter HTTP_space;
                                 HTTP = new FileWriter(Csv.getFileWriteMax(), true);
                                 HTTP_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                Writer.HTTPNolinebreaks(HTTP, Folder, index, max);
-                                Writer.HTTPLinespacing(HTTP_space, Folder, index, max);
+                                Writer.HTTPNolinebreaks(HTTP, Folder, index, max, Column.getS_arr3());
+                                Writer.HTTPLinespacing(HTTP_space, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("Connection Rate")) {
                                 FileWriter ConnectionRate;
                                 FileWriter ConnectionRate_space;
                                 ConnectionRate = new FileWriter(Csv.getFileWriteMax(), true);
                                 ConnectionRate_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                Writer.ConnectionRateNolinebreaks(ConnectionRate, Folder, index, max);
-                                Writer.ConnectionRateLinespacing(ConnectionRate_space, Folder, index, max);
+                                Writer.ConnectionRateNolinebreaks(ConnectionRate, Folder, index, max, Column.getS_arr3());
+                                Writer.ConnectionRateLinespacing(ConnectionRate_space, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("IP Pool")) {
                                 switch (arr.length) {
                                     case 2:
@@ -453,16 +461,16 @@ public class AutomaticReportGeneration extends JFrame {
                                         FileWriter CPU_space;
                                         CPUPool = new FileWriter(Csv.getFileWriteMax(), true);
                                         CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.CPUPoolNolinebreaks(CPUPool, Folder, index, max);
-                                        Writer.CPUPoolLinespacing(CPU_space, Folder, index, max);
+                                        Writer.CPUPoolNolinebreaks(CPUPool, Folder, index, max, Column.getS_arr3());
+                                        Writer.CPUPoolLinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 7:
                                         FileWriter IPPool;
                                         FileWriter IPPool_space;
                                         IPPool = new FileWriter(Csv.getFileWriteMax(), true);
                                         IPPool_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.DOCSISNolinebreaks(IPPool, Folder, index, max);
-                                        Writer.DOCSISLinespacing(IPPool_space, Folder, index, max);
+                                        Writer.DOCSISNolinebreaks(IPPool, Folder, index, max, Column.getS_arr3());
+                                        Writer.DOCSISLinespacing(IPPool_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                 }
                             } else {
@@ -472,8 +480,8 @@ public class AutomaticReportGeneration extends JFrame {
                                         FileWriter CPU_space;
                                         CPU = new FileWriter(Csv.getFileWriteMax(), true);
                                         CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.CPUNolinebreaks(CPU, Folder, index, max);
-                                        Writer.CPULinespacing(CPU_space, Folder, index, max);
+                                        Writer.CPUNolinebreaks(CPU, Folder, index, max, Column.getS_arr3());
+                                        Writer.CPULinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 3:
                                         FileWriter IN_OUT;
@@ -486,49 +494,49 @@ public class AutomaticReportGeneration extends JFrame {
                                         IN_OUT_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Most_space = new FileWriter(Csv.getFileMOST_space(), true);
                                         IN_OUTsingle_row = new FileWriter(Csv.getFileWriteIN_OUTsingle_row(), true);
-                                        Writer.Nolinebreaks(IN_OUT, Most, Folder, index, max, most);
-                                        Writer.Linespacing(IN_OUT_space, Most_space, Folder, index, max, most);
-                                        Writer.single_rowNolinebreaks(IN_OUTsingle_row, Folder, index, max);
+                                        Writer.Nolinebreaks(IN_OUT, Most, Folder, index, max, most, Column.getS_arr3());
+                                        Writer.Linespacing(IN_OUT_space, Most_space, Folder, index, max, most, Column.getS_arr3());
+                                        Writer.single_rowNolinebreaks(IN_OUTsingle_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 4:
                                         FileWriter column4;
                                         FileWriter column4_space;
                                         column4 = new FileWriter(Csv.getFileWriteMax(), true);
                                         column4_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.Nolinebreaks4(column4, Folder, index, max);
-                                        Writer.Linespacing4(column4_space, Folder, index, max);
+                                        Writer.Nolinebreaks4(column4, Folder, index, max, Column.getS_arr3());
+                                        Writer.Linespacing4(column4_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 5:
                                         FileWriter column5;
                                         FileWriter column5_space;
                                         column5 = new FileWriter(Csv.getFileWriteMax(), true);
                                         column5_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.Nolinebreaks5(column5, Folder, index, max);
-                                        Writer.Linespacing5(column5_space, Folder, index, max);
+                                        Writer.Nolinebreaks5(column5, Folder, index, max, Column.getS_arr3());
+                                        Writer.Linespacing5(column5_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 6:
                                         FileWriter column6;
                                         FileWriter column6_space;
                                         column6 = new FileWriter(Csv.getFileWriteMax(), true);
                                         column6_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.Nolinebreaks6(column6, Folder, index, max);
-                                        Writer.Linespacing6(column6_space, Folder, index, max);
+                                        Writer.Nolinebreaks6(column6, Folder, index, max, Column.getS_arr3());
+                                        Writer.Linespacing6(column6_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 7:
                                         FileWriter IPPool7;
                                         FileWriter IPPool7_space;
                                         IPPool7 = new FileWriter(Csv.getFileWriteMax(), true);
                                         IPPool7_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.Nolinebreaks7(IPPool7, Folder, index, max);
-                                        Writer.Linespacing7(IPPool7_space, Folder, index, max);
+                                        Writer.Nolinebreaks7(IPPool7, Folder, index, max, Column.getS_arr3());
+                                        Writer.Linespacing7(IPPool7_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 8:
                                         FileWriter IPPool8;
                                         FileWriter IPPool8_space;
                                         IPPool8 = new FileWriter(Csv.getFileWriteMax(), true);
                                         IPPool8_space = new FileWriter(Csv.getFileWriteMax_space(), true);
-                                        Writer.Nolinebreaks8(IPPool8, Folder, index, max);
-                                        Writer.Linespacing8(IPPool8_space, Folder, index, max);
+                                        Writer.Nolinebreaks8(IPPool8, Folder, index, max, Column.getS_arr3());
+                                        Writer.Linespacing8(IPPool8_space, Folder, index, max, Column.getS_arr3());
                                         break;
                                     default:
                                         break;
@@ -670,7 +678,7 @@ public class AutomaticReportGeneration extends JFrame {
                                     continue;
                                 } else if (arr[1].contains("Login_Cacti") || arr[1].contains("login_cacti")) {
                                     arr[1] = arr[1];
-                                } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29")) {
+                                } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29") || arr[1].contains("cacti27") || arr[1].contains("Cacti27")) {
                                     arr[1] = rra_id2_7_3_8(arr[1], Startday, Endday);
                                 } else {
                                     lineNumber++;
@@ -726,7 +734,7 @@ public class AutomaticReportGeneration extends JFrame {
                                         continue;
                                     } else if (arr[1].contains("Login_Cacti") || arr[1].contains("login_cacti")) {
                                         arr[1] = arr[1];
-                                    } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29")) {
+                                    } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29") || arr[1].contains("cacti27") || arr[1].contains("Cacti27")) {
                                         arr[1] = rra_id2_7_3_8(arr[1], Startday, Endday);
                                     } else {
                                         lineNumber++;
