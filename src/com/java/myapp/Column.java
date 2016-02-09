@@ -67,6 +67,7 @@ public class Column {
     public static void CPUnew(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
         String[] s = new String[1];
         Calculate(arr, s, column, lineNumber, arrData, arr2_length, arr3, date_start);
+
     }
 
     public static void IPPool(String[] arr, int lineNumber, float[] column, float[][] arrData, int arr2_length, String[] arr3, long date_start) {
@@ -104,7 +105,6 @@ public class Column {
 
         if (arr3.length > 1) {
             s_arr3 = arr3[1].split(",")[1].split("\"")[1];
-
         }
         if (arr2_length > 1) {
             long dateCSV = Date(arr[0]);

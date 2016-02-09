@@ -107,7 +107,6 @@ public class AutomaticReportGeneration extends JFrame {
                             try {
                                 while ((line = br_Checkline.readLine()) != null) {
                                     Checkline++;
-
                                 }
                                 if (Folder.getFileReport()[n].getCanonicalPath().contains("Control CPU")) {
                                     while ((line = br.readLine()) != null) {
@@ -134,19 +133,14 @@ public class AutomaticReportGeneration extends JFrame {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
                                         arr3 = line.split("Graph ID:");
-                                        switch (arr.length) {
-                                            case 4:
-                                                Column.CPUSlot3(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            case 3:
-                                                Column.CPUSlot2(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            case 9:
-                                                Column.CPUSlot8(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            default:
-                                                break;
+                                        if (arr.length == 4 || arr3.length > 1) {
+                                            Column.CPUSlot3(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
+                                        } else if (arr.length == 3 || arr3.length > 1) {
+                                            Column.CPUSlot2(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
+                                        } else if (arr.length == 9 || arr3.length > 1) {
+                                            Column.CPUSlot8(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                         }
+
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -187,16 +181,12 @@ public class AutomaticReportGeneration extends JFrame {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
                                         arr3 = line.split("Graph ID:");
-                                        switch (arr.length) {
-                                            case 2:
-                                                Column.IPPool(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            case 7:
-                                                Column.IPPoolDOCSIS(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            default:
-                                                break;
+                                        if (arr.length == 2 || arr3.length > 1) {
+                                            Column.IPPool(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
+                                        } else if (arr.length == 7 || arr3.length > 1) {
+                                            Column.IPPoolDOCSIS(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                         }
+
                                         if (arr2.length > 1) {
                                             lineNumber++;
                                         }
@@ -208,30 +198,20 @@ public class AutomaticReportGeneration extends JFrame {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
                                         arr3 = line.split("Graph ID:");
-                                        switch (arr.length) {
-                                            case 2:
-                                                Column.column_2(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            case 3:
-                                                Column.column_3(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            case 4:
-                                                Column.column_4(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            case 5:
-                                                Column.column_5(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            case 6:
-                                                Column.column_6(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            case 7:
-                                                Column.column_7(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            case 8:
-                                                Column.column_8(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
-                                                break;
-                                            default:
-                                                break;
+                                        if (arr.length == 2 || arr3.length > 1) {
+                                            Column.column_2(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
+                                        } else if (arr.length == 3 || arr3.length > 1) {
+                                            Column.column_3(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
+                                        } else if (arr.length == 4 || arr3.length > 1) {
+                                            Column.column_4(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
+                                        } else if (arr.length == 5 || arr3.length > 1) {
+                                            Column.column_5(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
+                                        } else if (arr.length == 6 || arr3.length > 1) {
+                                            Column.column_6(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
+                                        } else if (arr.length == 7 || arr3.length > 1) {
+                                            Column.column_7(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
+                                        } else if (arr.length == 8 || arr3.length > 1) {
+                                            Column.column_8(arr, lineNumber, column, arrData, arr2.length, arr3, date_start);
                                         }
                                         if (arr2.length > 1) {
                                             lineNumber++;
