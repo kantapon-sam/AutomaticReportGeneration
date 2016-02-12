@@ -478,6 +478,7 @@ public class AutomaticReportGeneration extends JFrame {
                                         IPPool_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Writer.DOCSISNolinebreaks(IPPool, Folder, index, max, Column.getS_arr3());
                                         Writer.DOCSISLinespacing(IPPool_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowDOCSISNolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                 }
                             } else {

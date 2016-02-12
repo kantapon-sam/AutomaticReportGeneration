@@ -260,7 +260,15 @@ public class Writer {
             ex.printStackTrace();
         }
     }
-
+  public static void single_rowDOCSISNolinebreaks(FileWriter IPPool, PathFolder Folder, int index, float[] max, String str_arr3) {
+        try {
+            IPPool.write(str_arr3 + ",\"[Platinum-Bronze]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + max[0] +","+max[1]+","+max[2]+","+max[3]+","+max[4]+"\n");
+            IPPool.close();
+            System.out.println("Write success!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     public static void CPUSlot3Nolinebreaks(FileWriter CPUSlot, PathFolder Folder, int index, float[] max, String str_arr3) {
         try {
             CPUSlot.write(str_arr3 + ",\"[CPUSlot1]" + Folder.getFileReport()[index].getName().split(".csv")[0] + "\"," + round(max[0]) + "\n");
