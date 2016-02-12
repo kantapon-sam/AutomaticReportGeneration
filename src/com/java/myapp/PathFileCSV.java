@@ -13,8 +13,8 @@ public class PathFileCSV {
     private File FileWriteMax_space;
     private String PathWriteMOST_space;
     private File FileMOST_space;
-    private String PathWriteIN_OUTsingle_row;
-    private File FileWriteIN_OUTsingle_row;
+    private String PathWriteSingle_row;
+    private File FileWriteSingle_row;
     public PathFileCSV() {
         try {
             PathWriteMax = new File(".").getCanonicalPath() + "\\Report\\Success\\Max.csv";
@@ -25,8 +25,8 @@ public class PathFileCSV {
             FileWriteMax_space = new File(PathWriteMax_space);
             PathWriteMOST_space = new File(".").getCanonicalPath() + "\\Report\\Success\\MOST-space.csv";
             FileMOST_space = new File(PathWriteMOST_space);
-            PathWriteIN_OUTsingle_row = new File(".").getCanonicalPath() + "\\Report\\Success\\IN_OUTsingle_row.csv";
-            FileWriteIN_OUTsingle_row = new File(PathWriteIN_OUTsingle_row);
+            PathWriteSingle_row = new File(".").getCanonicalPath() + "\\Report\\Success\\single_row.csv";
+            FileWriteSingle_row = new File(PathWriteSingle_row);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -63,13 +63,8 @@ public class PathFileCSV {
     public File getFileMOST_space() {
         return FileMOST_space;
     }
-
-    public String getPathWriteIN_OUTsingle_row() {
-        return PathWriteIN_OUTsingle_row;
-    }
-
-    public File getFileWriteIN_OUTsingle_row() {
-        return FileWriteIN_OUTsingle_row;
+    public File getFileWriteSingle_row() {
+        return FileWriteSingle_row;
     }
 
 }

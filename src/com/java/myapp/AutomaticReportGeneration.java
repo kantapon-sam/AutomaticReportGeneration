@@ -84,7 +84,7 @@ public class AutomaticReportGeneration extends JFrame {
                     Csv.getFileMOST().createNewFile();
                     Csv.getFileWriteMax_space().createNewFile();
                     Csv.getFileMOST_space().createNewFile();
-                    Csv.getFileWriteIN_OUTsingle_row().createNewFile();
+                    Csv.getFileWriteSingle_row().createNewFile();
                     Arrays.sort(Folder.getFileReport(), new Comparator<File>() {
                         public int compare(File f1, File f2) {
                             return Long.compare(f1.lastModified(), f2.lastModified());
@@ -362,7 +362,7 @@ public class AutomaticReportGeneration extends JFrame {
                                 Most = new FileWriter(Csv.getFileMOST(), true);
                                 NULL_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                 Most_space = new FileWriter(Csv.getFileMOST_space(), true);
-                                IN_OUTsingle_row = new FileWriter(Csv.getFileWriteIN_OUTsingle_row(), true);
+                                IN_OUTsingle_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                 Writer.Nolinebreaks(NULL, Most);
                                 Writer.Linespacing(NULL_space, Most_space);
                                 Writer.single_rowNolinebreaks(IN_OUTsingle_row, max);
@@ -371,28 +371,37 @@ public class AutomaticReportGeneration extends JFrame {
                                     case 4: {
                                         FileWriter CPUSlot;
                                         FileWriter CPUSlot_space;
+                                        FileWriter single_row;
                                         CPUSlot = new FileWriter(Csv.getFileWriteMax(), true);
                                         CPUSlot_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                         Writer.CPUSlot3Nolinebreaks(CPUSlot, Folder, index, max, Column.getS_arr3());
                                         Writer.CPUSlot3Linespacing(CPUSlot_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowCPUSlot3Nolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     }
                                     case 3: {
                                         FileWriter CPUSlot;
                                         FileWriter CPUSlot_space;
+                                        FileWriter single_row;
                                         CPUSlot = new FileWriter(Csv.getFileWriteMax(), true);
                                         CPUSlot_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                         Writer.CPUSlot2Nolinebreaks(CPUSlot, Folder, index, max, Column.getS_arr3());
                                         Writer.CPUSlot2Linespacing(CPUSlot_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowCPUSlot2Nolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     }
                                     case 9: {
                                         FileWriter CPUSlot;
                                         FileWriter CPUSlot_space;
+                                        FileWriter single_row;
                                         CPUSlot = new FileWriter(Csv.getFileWriteMax(), true);
                                         CPUSlot_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                        single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                         Writer.CPUSlot8Nolinebreaks(CPUSlot, Folder, index, max, Column.getS_arr3());
                                         Writer.CPUSlot8Linespacing(CPUSlot_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowCPUSlot8Nolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     }
                                     default:
@@ -401,40 +410,57 @@ public class AutomaticReportGeneration extends JFrame {
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("CPU new")) {
                                 FileWriter CPU;
                                 FileWriter CPU_space;
+                                FileWriter single_row;
                                 CPU = new FileWriter(Csv.getFileWriteMax(), true);
                                 CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                 Writer.CPUnewNolinebreaks(CPU, Folder, index, max, Column.getS_arr3());
                                 Writer.CPUnewLinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
+                                Writer.single_rowCPUnewNolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("Control CPU")) {
                                 FileWriter CPU;
                                 FileWriter CPU_space;
+                                FileWriter single_row;
                                 CPU = new FileWriter(Csv.getFileWriteMax(), true);
                                 CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                 Writer.ControlCPUNolinebreaks(CPU, Folder, index, max, Column.getS_arr3());
                                 Writer.ControlCPULinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
+                                Writer.single_rowControlCPUNolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("Data CPU")
                                     || Folder.getFileReport()[n].getCanonicalPath().contains("User Quota")) {
                                 FileWriter CPU;
                                 FileWriter CPU_space;
+                                FileWriter single_row;
                                 CPU = new FileWriter(Csv.getFileWriteMax(), true);
                                 CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                 Writer.DataCPUNolinebreaks(CPU, Folder, index, max, Column.getS_arr3());
                                 Writer.DataCPULinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
+                                Writer.single_rowDataCPUNolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("HTTP")) {
                                 FileWriter HTTP;
                                 FileWriter HTTP_space;
+                                FileWriter single_row;
                                 HTTP = new FileWriter(Csv.getFileWriteMax(), true);
                                 HTTP_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                 Writer.HTTPNolinebreaks(HTTP, Folder, index, max, Column.getS_arr3());
                                 Writer.HTTPLinespacing(HTTP_space, Folder, index, max, Column.getS_arr3());
+                                Writer.single_rowHTTPNolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("Connection Rate")) {
                                 FileWriter ConnectionRate;
                                 FileWriter ConnectionRate_space;
+                                FileWriter single_row;
                                 ConnectionRate = new FileWriter(Csv.getFileWriteMax(), true);
                                 ConnectionRate_space = new FileWriter(Csv.getFileWriteMax_space(), true);
+                                single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                 Writer.ConnectionRateNolinebreaks(ConnectionRate, Folder, index, max, Column.getS_arr3());
                                 Writer.ConnectionRateLinespacing(ConnectionRate_space, Folder, index, max, Column.getS_arr3());
+                                Writer.single_rowConnectionRateNolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                             } else if (Folder.getFileReport()[n].getCanonicalPath().contains("IP Pool")) {
+                                FileWriter single_row;
+                                single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                 switch (arr.length) {
                                     case 2:
                                         FileWriter CPUPool;
@@ -443,6 +469,7 @@ public class AutomaticReportGeneration extends JFrame {
                                         CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Writer.CPUPoolNolinebreaks(CPUPool, Folder, index, max, Column.getS_arr3());
                                         Writer.CPUPoolLinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowCPUPoolNolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 7:
                                         FileWriter IPPool;
@@ -454,6 +481,8 @@ public class AutomaticReportGeneration extends JFrame {
                                         break;
                                 }
                             } else {
+                                FileWriter single_row;
+                                single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                 switch (arr.length) {
                                     case 2:
                                         FileWriter CPU;
@@ -462,21 +491,21 @@ public class AutomaticReportGeneration extends JFrame {
                                         CPU_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Writer.CPUNolinebreaks(CPU, Folder, index, max, Column.getS_arr3());
                                         Writer.CPULinespacing(CPU_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowCPUNolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 3:
                                         FileWriter IN_OUT;
                                         FileWriter Most;
                                         FileWriter IN_OUT_space;
                                         FileWriter Most_space;
-                                        FileWriter IN_OUTsingle_row;
                                         IN_OUT = new FileWriter(Csv.getFileWriteMax(), true);
                                         Most = new FileWriter(Csv.getFileMOST(), true);
                                         IN_OUT_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Most_space = new FileWriter(Csv.getFileMOST_space(), true);
-                                        IN_OUTsingle_row = new FileWriter(Csv.getFileWriteIN_OUTsingle_row(), true);
+                                        single_row = new FileWriter(Csv.getFileWriteSingle_row(), true);
                                         Writer.Nolinebreaks(IN_OUT, Most, Folder, index, max, most, Column.getS_arr3());
                                         Writer.Linespacing(IN_OUT_space, Most_space, Folder, index, max, most, Column.getS_arr3());
-                                        Writer.single_rowNolinebreaks(IN_OUTsingle_row, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowIN_OUTNolinebreaks(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 4:
                                         FileWriter column4;
@@ -485,6 +514,7 @@ public class AutomaticReportGeneration extends JFrame {
                                         column4_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Writer.Nolinebreaks4(column4, Folder, index, max, Column.getS_arr3());
                                         Writer.Linespacing4(column4_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowNolinebreaks4(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 5:
                                         FileWriter column5;
@@ -493,6 +523,7 @@ public class AutomaticReportGeneration extends JFrame {
                                         column5_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Writer.Nolinebreaks5(column5, Folder, index, max, Column.getS_arr3());
                                         Writer.Linespacing5(column5_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowNolinebreaks5(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 6:
                                         FileWriter column6;
@@ -501,6 +532,7 @@ public class AutomaticReportGeneration extends JFrame {
                                         column6_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Writer.Nolinebreaks6(column6, Folder, index, max, Column.getS_arr3());
                                         Writer.Linespacing6(column6_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowNolinebreaks6(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 7:
                                         FileWriter IPPool7;
@@ -509,6 +541,7 @@ public class AutomaticReportGeneration extends JFrame {
                                         IPPool7_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Writer.Nolinebreaks7(IPPool7, Folder, index, max, Column.getS_arr3());
                                         Writer.Linespacing7(IPPool7_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowNolinebreaks7(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     case 8:
                                         FileWriter IPPool8;
@@ -517,6 +550,7 @@ public class AutomaticReportGeneration extends JFrame {
                                         IPPool8_space = new FileWriter(Csv.getFileWriteMax_space(), true);
                                         Writer.Nolinebreaks8(IPPool8, Folder, index, max, Column.getS_arr3());
                                         Writer.Linespacing8(IPPool8_space, Folder, index, max, Column.getS_arr3());
+                                        Writer.single_rowNolinebreaks8(single_row, Folder, index, max, Column.getS_arr3());
                                         break;
                                     default:
                                         break;
