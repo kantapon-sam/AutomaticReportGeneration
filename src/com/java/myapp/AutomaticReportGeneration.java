@@ -649,12 +649,12 @@ public class AutomaticReportGeneration extends JFrame {
 
                         if (selectURL.getChooser().getSelectedFile().getName().contains(".txt")
                                 || selectURL.getChooser().getSelectedFile().getName().contains(".csv")) {
-                            while (true) {
+                         /*   while (true) {
                                 Dialog.delay();
                                 if (Dialog.getDelay() >= 1500) {
                                     break;
                                 }
-                            }
+                            }*/
                             Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
                             new StopProgram();
                             Scanner scan = new Scanner(selectURL.getURL());
@@ -703,18 +703,21 @@ public class AutomaticReportGeneration extends JFrame {
                                 indexline++;
                                 Dialog.setErrorline(indexline);
                                 Process p = Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start chrome \"" + arr[1] + "\""});
-                                Thread.sleep(Dialog.getDelay());
+                                 if (arr[1].contains("Login_Cacti")) {
+                                        Thread.sleep(2000);
+                                    }
                             }
 
                             br.close();
 
                         } else {
-                            while (true) {
+                            
+                         /*   while (true) {
                                 Dialog.delay();
                                 if (Dialog.getDelay() >= 1500) {
                                     break;
                                 }
-                            }
+                            }*/
                             Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
                             new StopProgram();
                             for (File fileURL : selectURL.getURLinFolder()) {
@@ -759,7 +762,10 @@ public class AutomaticReportGeneration extends JFrame {
                                     indexline++;
                                     Dialog.setErrorline(indexline);
                                     Process p = Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start chrome \"" + arr[1] + "\""});
-                                    Thread.sleep(Dialog.getDelay());
+                                    if (arr[1].contains("Login_Cacti")) {
+                                        Thread.sleep(2000);
+                                    }
+                                
                                 }
                                 br.close();
                             }
