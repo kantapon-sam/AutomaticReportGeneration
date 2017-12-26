@@ -14,8 +14,9 @@ public class URLConnection extends Dialog {
 
     private int Error = 0;
 
-    public void CheckConnection(String web, String line, int lineNumber) {
+    public void CheckConnection(String web, String line, int lineNumber, String Name_file) {
         setLineNumber(lineNumber);
+        setName_file(Name_file);
         try {
             URL url = new URL(web);
             HttpURLConnection http = (HttpURLConnection) url.openConnection();

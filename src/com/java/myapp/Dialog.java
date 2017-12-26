@@ -16,6 +16,7 @@ public class Dialog extends PathFolder {
     private int Numberlogin = 0;
     private int lineNumber = 0;
     private int TotalFile = 0;
+    private String Name_file;
     private int choice = 0;
     private PathFolder PathFolderMusic;
     private InputStream InputStream;
@@ -45,7 +46,12 @@ public class Dialog extends PathFolder {
             AudioPlayer.player.start(Music);
 
             choice = JOptionPane.showOptionDialog(null,
-                    "Automatic Report Generation",
+                    "Automatic Report Generation\n"
+                            + "[Version 9]\n"
+                            + "Mr.Kantapon Samthong\n"
+                            + "IP & Wireless Broadband Engineering/IP Transport \n"
+                            + "E-mail : Kantapon_Sam@Truecorp.co.th\n"
+                            + "Mobile phone  : 090-904-9751",
                     "Automatic Report Generation", JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
         } catch (FileNotFoundException ex) {
@@ -84,7 +90,7 @@ public class Dialog extends PathFolder {
     public void LineURLError() {
         Error();
         JOptionPane.showMessageDialog(null,
-                "URL ERROR Start!!! Line = " + lineNumber,
+                "URL ERROR Start!!! Line = " + lineNumber+"\nFile = "+Name_file,
                 "No Connection!",
                 JOptionPane.ERROR_MESSAGE);
         System.out.println("URL ERROR!!! Line = " + lineNumber);
@@ -335,6 +341,14 @@ public void OverCurrent() {
 
     public String getDateStop() {
         return dateStop;
+    }
+
+    public String getName_file() {
+        return Name_file;
+    }
+
+    public void setName_file(String Name_file) {
+        this.Name_file = Name_file;
     }
 
     
