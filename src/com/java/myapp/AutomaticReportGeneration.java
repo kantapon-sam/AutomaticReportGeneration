@@ -49,12 +49,11 @@ public class AutomaticReportGeneration extends JFrame {
                         Calendar cal = Calendar.getInstance();
                         cal.set(Calendar.DAY_OF_MONTH, Current.getTime().getDate() - 7);
                         dateSpinner.setValue(cal.getTime());
-                        
+
                         int num = JOptionPane.showOptionDialog(
                                 null, dateSpinner,
                                 "Date Start", JOptionPane.YES_NO_CANCEL_OPTION,
                                 JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-                        System.out.println(dateSpinner.getValue());
                         if (num == 1 || num == -1) {
                             System.exit(0);
                         }
@@ -86,6 +85,10 @@ public class AutomaticReportGeneration extends JFrame {
                         }
                     });
                     for (int n = 0; n < Folder.getFileReport().length; n++) {
+                        //Bug peeya
+                        if (Folder.getFileReport()[n].getName().contains("graph_export")) {
+                            continue;
+                        }
                         index = n;
                         String[] arr = null;
                         String[] arr2 = null;
@@ -106,10 +109,13 @@ public class AutomaticReportGeneration extends JFrame {
                                         arr = line.split(",");
                                         arr2 = line.split("\\+");
                                         arr3 = line.split("Graph ID:");
+                                        //Bug tim
+                                        if (line.contains("Title:")) {
+                                            continue;
+                                        }
                                         Column.column(arr, lineNumber, column, arrData, arr2.length, arr3, date_start, arr.length);
                                         lineNumber++;
                                     }
-
                                 } catch (ArrayIndexOutOfBoundsException ex) {
                                     Dialog.setTotalFile(TotalFile);
                                     Dialog.FileError(index);
@@ -117,28 +123,33 @@ public class AutomaticReportGeneration extends JFrame {
                                 }
 
                             }
-                            for (int i = 0; i < arr2.length - 1; i++) {
+
+                            //System.out.println(Column.getS_arr3());
+                            for (int i = 0; i < arr.length - 1; i++) {
                                 for (int j = 0; j < arrData[0].length; j++) {
+
                                     if (arrData[i][j] != 0) {
                                         sum[i] += arrData[i][j];
                                         count++;
                                         if (count % 5 == 0) {
                                             sum[i] /= 5;
                                             Traffic[i][t] = sum[i];
+                                            //System.out.println(Traffic[i][t]);
                                             t++;
                                             sum[i] = 0;
+
                                         }
+
                                     }
                                 }
+
                             }
 
-                            for (int i = 0; i < arr2.length - 1; i++) {
+                            for (int i = 0; i < arr.length - 1; i++) {
                                 //Arrays.sort(arrData[i]);
                                 Arrays.sort(Traffic[i]);
-
                             }
-
-                            for (int i = 0; i < arr2.length - 1; i++) {
+                            for (int i = 0; i < arr.length - 1; i++) {
                                 //max[i] = arrData[i][arrData[i].length - 1];
                                 max[i] = Traffic[i][Traffic[i].length - 1];
                             }
@@ -166,7 +177,7 @@ public class AutomaticReportGeneration extends JFrame {
                         }
                         try {
                             if (lineNumber == 0) {
-                                System.out.println("aaa");
+                                System.out.println("No File");
                             } else {
                                 FileWriter Summary;
                                 Summary = new FileWriter(Csv.getFileWriteSummary(), true);
@@ -180,6 +191,24 @@ public class AutomaticReportGeneration extends JFrame {
                     System.exit(0);
                     break;
                 case 1:
+                    int Sum_Cacti = 0;
+                    Cacti Cacti = new Cacti();
+
+                    Dialog.Num_Cacti();
+                    if (Dialog.getNum_Cacti() == 0) {
+
+                        Cacti.setVisible(true);
+                        while (true) {
+                            for (int i = 0; i < 30; i++) {
+                                Sum_Cacti += Cacti.getNum_Cacti()[i];
+                            }
+                            if (Sum_Cacti != 0) {
+                                Cacti.setVisible(false);
+                                break;
+                            }
+
+                        }
+                    }
                     long Startday = 0;
                     long Endday = 0;
                     while (true) {
@@ -251,6 +280,8 @@ public class AutomaticReportGeneration extends JFrame {
                     }
 
                     try {
+                        int FileCount = 0;
+                        int DelayTime = 0;
                         int indexline = 0;
                         int Checkline = 0;
 
@@ -268,13 +299,17 @@ public class AutomaticReportGeneration extends JFrame {
 
                         if (selectURL.getChooser().getSelectedFile().getName().contains(".txt")
                                 || selectURL.getChooser().getSelectedFile().getName().contains(".csv")) {
-                            /*   while (true) {
-                                Dialog.delay();
-                                if (Dialog.getDelay() >= 1500) {
-                                    break;
-                                }
-                            }*/
                             Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
+                            if (Dialog.getNumberlogin() == 0) {
+                                for (int i = 0; i < Cacti.getNum_Cacti().length; i++) {
+                                    if (Cacti.getNum_Cacti()[i] != 0) {
+                                        String loginCacti = "http://nocweb02/cactiportal/Login_Cacti" + String.format("%02d", Cacti.getNum_Cacti()[i]) + ".aspx";
+                                        Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start chrome \"" + loginCacti + "\""});
+                                        Thread.sleep(2000);
+                                    }
+                                }
+
+                            }
                             new StopProgram();
                             Scanner scan = new Scanner(selectURL.getURL());
                             BufferedReader br = new BufferedReader(new FileReader(selectURL.getURL()));
@@ -300,8 +335,23 @@ public class AutomaticReportGeneration extends JFrame {
                                     arr[1] = arr[1];
                                 } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29") || arr[1].contains("cacti27") || arr[1].contains("Cacti27")) {
                                     arr[1] = rra_id2_7_3_8(arr[1], Startday, Endday);
+                                    if (FileCount == (Folder.getFolderReport().list().length - 1)) {
+                                        DelayTime = 0;
+
+                                    } else {
+                                        DelayTime += 25;
+                                        Thread.sleep(DelayTime);
+                                    }
+                                    Connect.CheckConnection(arr[1], line, indexline, Name_file);
                                 } else {
                                     arr[1] = rra_id2(arr[1], Startday, Endday);
+                                    if (FileCount == (Folder.getFolderReport().list().length - 1)) {
+                                        DelayTime = 0;
+                                    } else {
+                                        DelayTime += 25;
+                                        Thread.sleep(DelayTime);
+                                    }
+
                                     Connect.CheckConnection(arr[1], line, indexline, Name_file);
                                 }
 
@@ -310,21 +360,25 @@ public class AutomaticReportGeneration extends JFrame {
                                 if (arr[1].contains("Login_Cacti")) {
                                     Thread.sleep(2000);
                                 } else {
-                                    Thread.sleep(1000);
+                                    FileCount++;
+                                    Thread.sleep(DelayTime);
                                 }
                             }
 
                             br.close();
 
                         } else {
-
-                            /*   while (true) {
-                                Dialog.delay();
-                                if (Dialog.getDelay() >= 1500) {
-                                    break;
-                                }
-                            }*/
                             Connect.Login(new URI("http://nocweb02/cactiportal/Login.aspx"));
+                            if (Dialog.getNumberlogin() == 0) {
+                                for (int i = 0; i < Cacti.getNum_Cacti().length; i++) {
+                                    if (Cacti.getNum_Cacti()[i] != 0) {
+                                        String loginCacti = "http://nocweb02/cactiportal/Login_Cacti" + String.format("%02d", Cacti.getNum_Cacti()[i]) + ".aspx";
+                                        Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start chrome \"" + loginCacti + "\""});
+                                        Thread.sleep(2000);
+                                    }
+                                }
+
+                            }
                             new StopProgram();
                             for (File fileURL : selectURL.getURLinFolder()) {
                                 Scanner scan = new Scanner(fileURL);
@@ -359,15 +413,38 @@ public class AutomaticReportGeneration extends JFrame {
                                         arr[1] = arr[1];
                                     } else if (arr[1].contains("cacti29") || arr[1].contains("Cacti29") || arr[1].contains("cacti27") || arr[1].contains("Cacti27")) {
                                         arr[1] = rra_id2_7_3_8(arr[1], Startday, Endday);
+                                        if (FileCount == (Folder.getFolderReport().list().length - 1)) {
+                                            System.out.println(FileCount + "=" + (Folder.getFolderReport().list().length - 1));
+                                            DelayTime = 0;
+
+                                        } else {
+                                            DelayTime += 25;
+                                            System.out.println(DelayTime);
+                                            Thread.sleep(DelayTime);
+                                        }
+                                        Connect.CheckConnection(arr[1], line, indexline, Name_file);
                                     } else {
                                         arr[1] = rra_id2(arr[1], Startday, Endday);
+                                        if (FileCount == (Folder.getFolderReport().list().length - 1)) {
+                                            System.out.println(FileCount + "=" + (Folder.getFolderReport().list().length - 1));
+                                            DelayTime = 0;
+                                        } else {
+                                            DelayTime += 25;
+                                            System.out.println(DelayTime);
+                                            Thread.sleep(DelayTime);
+                                        }
                                         Connect.CheckConnection(arr[1], line, indexline, Name_file);
+
                                     }
 
                                     Dialog.setErrorline(indexline);
                                     Process p = Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start chrome \"" + arr[1] + "\""});
                                     if (arr[1].contains("Login_Cacti")) {
                                         Thread.sleep(2000);
+                                    } else {
+                                        FileCount++;
+                                        System.out.println("FileCount = " + FileCount);
+                                        Thread.sleep(DelayTime);
                                     }
 
                                 }

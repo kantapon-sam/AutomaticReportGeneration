@@ -13,6 +13,7 @@ public class Dialog extends PathFolder {
 
     private final Object[] options = {"Result", "Download", "Exit"};
     private final Object[] login = {"OK", "Cancel"};
+    private final Object[] cacti = {"OK", "Cancel"};
     private int Numberlogin = 0;
     private int lineNumber = 0;
     private int TotalFile = 0;
@@ -25,7 +26,7 @@ public class Dialog extends PathFolder {
     private long delay = 0;
     private String dateStart;
     private String dateStop;
-
+    private int Num_Cacti = 0;
     int Errorline = 0;
     protected AudioStream Music;
 
@@ -47,11 +48,11 @@ public class Dialog extends PathFolder {
 
             choice = JOptionPane.showOptionDialog(null,
                     "Automatic Report Generation\n"
-                            + "[Version 9]\n"
-                            + "Mr.Kantapon Samthong\n"
-                            + "IP & Wireless Broadband Engineering/IP Transport \n"
-                            + "E-mail : Kantapon_Sam@Truecorp.co.th\n"
-                            + "Mobile phone  : 090-904-9751",
+                    + "[Version 11.2]\n"
+                    + "Mr.Kantapon Samthong\n"
+                    + "IP & Wireless Broadband Engineering/IP Transport\n"
+                    + "E-mail : Kantapon_Sam@Truecorp.co.th\n"
+                    + "Mobile phone  : 090-904-9751",
                     "Automatic Report Generation", JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
         } catch (FileNotFoundException ex) {
@@ -72,10 +73,9 @@ public class Dialog extends PathFolder {
                 "Question", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, login, login[1]);
         System.out.print(Numberlogin);
-        if (Numberlogin == 1) {
+        if (Numberlogin == 1 || Numberlogin == -1) {
             System.exit(0);
         }
-
     }
 
     public void URLError() {
@@ -90,7 +90,7 @@ public class Dialog extends PathFolder {
     public void LineURLError() {
         Error();
         JOptionPane.showMessageDialog(null,
-                "URL ERROR Start!!! Line = " + lineNumber+"\nFile = "+Name_file,
+                "URL ERROR Start!!! Line = " + lineNumber + "\nFile = " + Name_file,
                 "No Connection!",
                 JOptionPane.ERROR_MESSAGE);
         System.out.println("URL ERROR!!! Line = " + lineNumber);
@@ -288,13 +288,36 @@ public class Dialog extends PathFolder {
                 JOptionPane.ERROR_MESSAGE);
 
     }
-public void OverCurrent() {
-          Error();
+
+    public void OverCurrent() {
+        Error();
         JOptionPane.showMessageDialog(null,
                 "Start date over current !!!",
                 "Error Current",
                 JOptionPane.ERROR_MESSAGE);
     }
+
+    public void pathFileReport() {
+        Error();
+        JOptionPane.showMessageDialog(null,
+                "Setting path File Download Report ",
+                "Error path file report",
+                JOptionPane.ERROR_MESSAGE);
+        System.exit(0);
+    }
+
+    public void Num_Cacti() {
+
+        Num_Cacti = JOptionPane.showOptionDialog(null,
+                "Please selete number cacti for login",
+                "Question", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, cacti, cacti[1]);
+        //System.out.print(Num_Cacti);
+        if (Num_Cacti == 1 || Num_Cacti == -1) {
+            System.exit(0);
+        }
+    }
+
     public Object[] getOptions() {
         return options;
     }
@@ -351,6 +374,12 @@ public void OverCurrent() {
         this.Name_file = Name_file;
     }
 
-    
+    public int getNumberlogin() {
+        return Numberlogin;
+    }
+
+    public int getNum_Cacti() {
+        return Num_Cacti;
+    }
 
 }
